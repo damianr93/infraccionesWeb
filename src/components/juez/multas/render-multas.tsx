@@ -29,7 +29,7 @@ export const RenderMultas = ({multas, onDeleteMulta}) => {
                     <li>Marca vehiculo: {multa.marca_vehiculo} </li>
                     <li>Modelo vehiculo: {multa.modelo_vehiculo} </li>
                     <li>Color vehiculo: {multa.color_vehiculo} </li>
-                    <li>Numero de Lucencia del conductor: {multa.numero_licencia_conductor} </li>
+                    <li>Numero de Licencia del conductor: {multa.numero_licencia_conductor} </li>
                     <li>Ubicacion infraccion: {multa.ubicacion_infraccion} </li>
                     <li>Referencia ubicacion: {multa.referencia_ubicacion} </li>
                     <li>Infracciones nomenclador:
