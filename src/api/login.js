@@ -1,6 +1,6 @@
 
 
-const url = `http://localhost:3000/users/login`
+const url = `https://infracciones-backend-app-pltmo.ondigitalocean.app/users/login`
 
 const loginUser = async (data) => {
 

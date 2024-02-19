@@ -1,6 +1,6 @@
 
 
-const url = `http://localhost:3000/nomencladores`;
+const url = `http://infracciones-backend-app-pltmo.ondigitalocean.app/nomencladores`;
 
 const patchNomencladores = async (id, data) => {
   const token = localStorage.getItem('token');

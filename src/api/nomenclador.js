@@ -1,7 +1,7 @@
 
 
 
-const url = `http://localhost:3000/nomencladores`
+const url = `https://infracciones-backend-app-pltmo.ondigitalocean.app/nomencladores`
 
 const getNomenclador = async () => {
 

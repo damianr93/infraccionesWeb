@@ -1,6 +1,6 @@
 
 
-const url = `http://localhost:3000/infracciones`;
+const url = `https://infracciones-backend-app-pltmo.ondigitalocean.app/infracciones`;
 
 const patchMultas = async (id, data) => {
   const token = localStorage.getItem('token');
