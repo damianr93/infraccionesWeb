@@ -167,7 +167,7 @@ export const EditarInfraccion = () => {
 
     return (
         <div className="editing">
-            <h1>Editando infraccion N° {values.numero_infraccion}</h1>
+            <h1>Editando infracción N° {values.numero_infraccion}</h1>
             <form onSubmit={(event) => onSubmit(event)}>
                 <label>Dominio:</label>
                 <input
@@ -181,49 +181,49 @@ export const EditarInfraccion = () => {
                     value={values.nombre_propietario}
                     onChange={handlePropName}
                 />
-                <label>Nombre conductor:</label>
+                <label>Nombre del conductor:</label>
                 <input
                     type="text"
                     value={values.nombre_conductor}
                     onChange={handleDriverName}
                 />
-                <label>Domicilio conductor:</label>
+                <label>Domicilio del conductor:</label>
                 <input
                     type="text"
                     value={values.domicilio_conductor}
                     onChange={handleAdressDriver}
                 />
-                <label>Marca vehiculo:</label>
+                <label>Marca del vehículo:</label>
                 <input
                     type="text"
                     value={values.marca_vehiculo}
                     onChange={handleMarcaVehiculo}
                 />
-                <label>Modelo vehiculo:</label>
+                <label>Modelo del vehículo:</label>
                 <input
                     type="text"
                     value={values.modelo_vehiculo}
                     onChange={handleCarModel}
                 />
-                <label>Color vehiculo:</label>
+                <label>Color del vehículo:</label>
                 <input
                     type="text"
                     value={values.color_vehiculo}
                     onChange={handleCarColor}
                 />
-                <label>Numero licencia conductor:</label>
+                <label>Número de licencia del conductor:</label>
                 <input
                     type="text"
                     value={values.numero_licencia_conductor}
                     onChange={handleLicNumber}
                 />
-                <label>Ubicacion infraccion:</label>
+                <label>Ubicación de la infracción:</label>
                 <input
                     type="text"
                     value={values.ubicacion_infraccion}
                     onChange={handleLocationInfraction}
                 />
-                <label>Referencia ubicacion:</label>
+                <label>Referencia de ubicación:</label>
                 <input
                     type="text"
                     value={values.referencia_ubicacion}
@@ -232,21 +232,16 @@ export const EditarInfraccion = () => {
                 <label>Nomenclador:</label>
                 <select
                     value={values.nomenclador}
-                    onChange={handleSeleccionarInfraccion}   /*Revisar Warning*/
+                    onChange={handleSeleccionarInfraccion} /* Revisar Warning */
                 >
                     <option value="">Seleccione una opción</option>
-                    {
-                        nomenclador.map(infraccion => {
-                            return (
-                                <option
-                                    key={infraccion.id}
-                                    value={infraccion.id}>
-                                    {infraccion.nombre}
-                                </option>
-                            )
-
-                        })
-                    }
+                    {nomenclador.map(infraccion => {
+                        return (
+                            <option key={infraccion.id} value={infraccion.id}>
+                                {infraccion.nombre}
+                            </option>
+                        );
+                    })}
                 </select>
 
                 {infracciones.length > 0 && (
@@ -260,8 +255,7 @@ export const EditarInfraccion = () => {
                     })
                 )}
 
-
-                <label>Numero infraccion:</label>
+                <label>Número de infracción:</label>
                 <input
                     type="text"
                     value={values.numero_infraccion}
@@ -282,18 +276,16 @@ export const EditarInfraccion = () => {
                     onChange={handleJuez}
                 >
                     <option value="">Seleccione una opción</option>
-                    {
-                        jueces.map(juez => {
-                            return (
-                                <option
-                                    key={juez.id}
-                                    value={juez.id}>
-                                    {juez.name}
-                                </option>
-                            )
-
-                        })
-                    }
+                    {jueces.map(juez => {
+                        return (
+                            <option
+                                key={juez.id}
+                                value={juez.id}
+                            >
+                                {juez.name}
+                            </option>
+                        );
+                    })}
                 </select>
 
                 <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
@@ -318,8 +310,8 @@ export const EditarInfraccion = () => {
                     Volver
                 </button>
 
-
             </form>
         </div>
+
     );
 };
