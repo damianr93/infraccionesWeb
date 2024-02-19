@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useObtenerNomenclador } from "../../hook/obtenerNomenclador";
-import { useObtenerUsuarios } from "../../hook/obtenerUsers";
-import patchMultas from "../../api/editar-multa.js"
+import { useObtenerNomenclador } from "../../../hook/obtenerNomenclador";
+import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
+import patchMultas from "../../../api/editar-multa.js"
 
-export const EditarElemento = () => {
+export const EditarInfraccion = () => {
     const location = useLocation();
     const nomenclador = useObtenerNomenclador()
     const users = useObtenerUsuarios()

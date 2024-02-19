@@ -1,9 +1,9 @@
 
-const url = `http://localhost:3000/infracciones`;
+const url = `http://localhost:3000/nomencladores`;
 
 
 
-const deleteMulta = async (id) => {
+const deleteNomenclador = async (id) => {
   const token = localStorage.getItem('token');
 
   try {
@@ -30,4 +30,4 @@ const deleteMulta = async (id) => {
   }
 };
 
-export default deleteMulta;
+export default deleteNomenclador;

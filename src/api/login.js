@@ -1,7 +1,9 @@
 
-const url = 'http://localhost:3000/users/login'
+
+const url = `http://localhost:3000/users/login`
 
 const loginUser = async (data) => {
+
 
     const resp = await fetch(url, {
         method: "POST",

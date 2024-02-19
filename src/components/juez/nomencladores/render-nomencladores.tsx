@@ -1,7 +1,18 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import deleteNomenclador from '../../../api/eliminar-nomenclador.js'
 
-export const RenderNomenclador = ({nomencladores}) => {
-    // const navigation = useNavigate()
+export const RenderNomenclador = ({nomencladores, onDeleteNomenclador}) => {
+    const navigation = useNavigate()
+
+    const onClickEdit = (nomenclador) => {
+        navigation('/edition-nomenclador', {state:nomenclador})
+    }
+
+    const onClickDelete = async(nomenclador) => {
+        onDeleteNomenclador(nomenclador.id)
+        await deleteNomenclador(nomenclador.id)
+        
+    }
 
     return (
 
@@ -13,11 +24,12 @@ export const RenderNomenclador = ({nomencladores}) => {
                     <li>Unidades de valor: {nomenclador.unidades_de_valor}</li>
                 </ul>
                 <div className='buttonsCrud'>
-                    <button>Editar</button>
-                    <button>Eliminar</button>
+                    <button onClick={() => onClickEdit(nomenclador)}>Editar</button>
+                    <button onClick={() => onClickDelete(nomenclador)}>Eliminar</button>
                 </div>
             </div>
         ))
 
     );
 };
+

@@ -1,6 +1,7 @@
 
 
-const url = 'http://localhost:3000/nomencladores'
+
+const url = `http://localhost:3000/nomencladores`
 
 const getNomenclador = async () => {
 
@@ -16,5 +17,7 @@ const getNomenclador = async () => {
         .then((res) => res.json())
     return resp
 }
+
+
 
 export default getNomenclador

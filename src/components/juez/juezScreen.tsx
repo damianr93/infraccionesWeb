@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VerMultas } from "./multas/multas";
 import { ScreenBarJuez } from "./screen-bar-juez";
 import { VerNomencladores } from "./nomencladores/nomencladores";
+import { ValorUnidadFija } from "./valor-unidad-fija/valor-unidad-fija";
+import { useNavigate } from "react-router-dom";
 
 
 export const JuezScreen = () => {
 
   const [selectedOption, setSelectedOption] = useState('');
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (selectedOption === 'Cerrar sesión') {
+      localStorage.removeItem('token');
+      navigate('/login', { replace: true });
+    }
+  }, [selectedOption, navigate]);
 
   const renderOptionContent = () => {
 
@@ -16,15 +26,12 @@ export const JuezScreen = () => {
       case 'Administrar nomencladores':
         return <VerNomencladores/>;
       case 'Valor de unidad fija':
-        return <div>Contenido para valor de unidad fija</div>;
-      case 'Cerrar sesión':
-        return <div>Contenido para cerrar sesión</div>;
+        return <ValorUnidadFija/>;
       default:
         return null;
     }
   }
 
-  
 
     return (
       <div className="userScreen">

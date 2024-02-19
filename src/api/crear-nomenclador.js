@@ -1,24 +1,24 @@
 
-const url = `http://localhost:3000/infracciones`;
 
+const url = `http://localhost:3000/nomencladores`;
 
-
-const deleteMulta = async (id) => {
+const postNomencladores = async (data) => {
   const token = localStorage.getItem('token');
-
+  
   try {
-    const response = await fetch(`${url}/${id}`, {
-      method: 'DELETE',
+    const response = await fetch(`${url}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
 
       const errorMessage = await response.text();
-      throw new Error(`Error en la solicitud DELETE: ${errorMessage || response.statusText}`);
+      throw JSON.parse(errorMessage);
     }
 
     const result = await response.json();
@@ -30,4 +30,4 @@ const deleteMulta = async (id) => {
   }
 };
 
-export default deleteMulta;
+export default postNomencladores;

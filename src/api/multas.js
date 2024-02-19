@@ -1,6 +1,6 @@
 
 
-const url = 'http://localhost:3000/infracciones'
+const url = `http://localhost:3000/infracciones`
 
 const getMultas = async () => {
 
