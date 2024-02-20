@@ -55,6 +55,7 @@ export const EditarInfraccion = () => {
             ...prevValues,
             juez_asignado: event.target.value
         }));
+
     }
 
 
@@ -146,10 +147,13 @@ export const EditarInfraccion = () => {
         event.preventDefault();
 
         const id_nomencladoresNuevos = values.id_nomenclador.map(nomenclador => nomenclador.id);
-        const id_juez = values.juez_asignado
         try {
 
-            await patchMultas(values.id, { ...values, juez_asignado: id_juez, id_nomenclador: id_nomencladoresNuevos });
+            await patchMultas(values.id, {
+                ...values,
+                juez_asignado: values.juez_asignado,
+                id_nomenclador: id_nomencladoresNuevos
+            });
 
             setMensajeError(null)
             return setMensajeExito('Cambios guardados con exito!')
@@ -275,7 +279,7 @@ export const EditarInfraccion = () => {
                 <select
                     onChange={handleJuez}
                 >
-                    <option value="">Seleccione una opción</option>
+                    <option>Seleccione una opción</option>
                     {jueces.map(juez => {
                         return (
                             <option

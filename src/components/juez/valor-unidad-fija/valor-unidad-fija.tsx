@@ -12,22 +12,27 @@ export const ValorUnidadFija = () => {
   const valorUn = useObtenerValorUnFija()
   const [valorUnFija, setValorUnFija] = useState<valorFijo>()
   const [newValue, setNewValue] = useState<number | undefined>()
+  const [mensajeError, setMensajeError] = useState(null)
+  const [mensajeExito, setMensajeExito] = useState(null)
 
   useEffect(() => {
     setValorUnFija(valorUn)
   }, [valorUn, setValorUnFija])
 
   const handleValue = (event) => {
+    if(event.target.valor <= 0) return
     const value = parseFloat(event.target.value)
     setNewValue(value)
   }
 
   const onClickUpdateValue = async () => {
 
+    if(newValue <= 0) return setMensajeError('Ingrese un valor mayor a 0')
     valorUnFija.valor = newValue
 
-
     try {
+    
+      if(valorUnFija.valor <= 0) return setMensajeError('Ingrese un valor mayor a 0')
       await patchValorUnFijo(valorUnFija.id, valorUnFija)
 
       setValorUnFija(prevValues => ({
@@ -35,8 +40,13 @@ export const ValorUnidadFija = () => {
         valor: newValue
       }))
 
+      setMensajeError(null)
+      setMensajeExito('Valor guardado')
+
     } catch (error) {
       console.log(error)
+      setMensajeExito(null)
+      setMensajeError(error)
     }
 
   }
@@ -51,6 +61,18 @@ export const ValorUnidadFija = () => {
         onChange={handleValue}
       />
       <button onClick={() => onClickUpdateValue()}>Actualizar valor</button>
+
+      {mensajeExito && !mensajeError &&
+        <div className="mensajeExito">
+          <p>{mensajeExito}</p>
+        </div>
+      }
+
+      {!mensajeExito && mensajeError &&
+        <div className="mensajeError">
+          <p>{mensajeError}</p>
+        </div>
+      }
     </div>
   )
 }

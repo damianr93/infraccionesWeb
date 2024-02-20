@@ -1,6 +1,6 @@
 
 
-const url = `https://infracciones-backend-app-pltmo.ondigitalocean.app/users`;
+const url = `http://localhost:3000/users`;
 
 const getUsers = async () => {
 

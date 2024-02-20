@@ -1,5 +1,5 @@
 
-const URL = "https://infracciones-backend-app-pltmo.ondigitalocean.app/combustible"
+const URL = "http://localhost:3000/combustible"
 
 
 const getValorUnidadFija = async () => {

@@ -2,7 +2,7 @@ import { useState } from "react"
 import postNomencladores from '../../../api/crear-nomenclador.js'
 
 
-export const CrearNomenclador = ({cratingNomenclador, addNomenclador}) => {
+export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
     const [values, setValues] = useState({
         nombre: '',
         unidades_de_valor: ''
@@ -33,7 +33,12 @@ export const CrearNomenclador = ({cratingNomenclador, addNomenclador}) => {
 
             const numeroDecimal = parseFloat(userInput.replace(',', '.'))
 
-            const newNomenclador = await postNomencladores({ ...values, unidades_de_valor:numeroDecimal });
+            if(numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
+
+            const newNomenclador = await postNomencladores({
+                ...values,
+                unidades_de_valor: numeroDecimal
+            });
 
             addNomenclador(newNomenclador)
             cratingNomenclador(false)
@@ -57,7 +62,7 @@ export const CrearNomenclador = ({cratingNomenclador, addNomenclador}) => {
                 />
                 <label>Valor:</label>
                 <input
-                    type="text"
+                    type="number"
                     value={values.unidades_de_valor}
                     onChange={handleValor}
                 />

@@ -1,6 +1,6 @@
 
 
-const url = `https://infracciones-backend-app-pltmo.ondigitalocean.app/combustible`;
+const url = `http://localhost:3000/combustible`;
 
 const patchValorUnFijo = async (id, data) => {
   const token = localStorage.getItem('token');

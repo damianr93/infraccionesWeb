@@ -41,6 +41,14 @@ export const RenderMultas = ({ multas, onDeleteMulta }) => {
                     <li>Número de infracción: {multa.numero_infraccion} </li>
                     <li>Estado: {multa.estado} </li>
                     <li>Juez asignado: {multa.juez_asignado && multa.juez_asignado.name} </li>
+
+                    {(multa.foto.length > 0) ? <li>Foto/s:</li> : null}
+
+                    {multa.foto.map((foto, id) => (
+                        <a key={id} href={foto} target="blank"><img className="imgPrueba" src={foto} alt="" /></a>
+
+
+                    ))}
                 </ul>
                 <div className='buttonsCrud'>
                     <button onClick={() => onClickEdit(multa)}>Editar</button>

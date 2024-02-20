@@ -35,8 +35,14 @@ export const EditarNomenclador = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        try {
 
+        const userInput = values.unidades_de_valor
+
+        const numeroDecimal = parseFloat(userInput.replace(',', '.'))
+
+        if (numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
+
+        try {
             await patchNomencladores(values.id, { ...values });
 
             setMensajeError(null)
@@ -65,7 +71,7 @@ export const EditarNomenclador = () => {
                 />
                 <label>Valor:</label>
                 <input
-                    type="text"
+                    type="number"
                     value={values.unidades_de_valor}
                     onChange={handleValor}
                 />
