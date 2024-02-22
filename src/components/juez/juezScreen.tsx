@@ -4,6 +4,7 @@ import { ScreenBarJuez } from "./screen-bar-juez";
 import { VerNomencladores } from "./nomencladores/nomencladores";
 import { ValorUnidadFija } from "./valor-unidad-fija/valor-unidad-fija";
 import { useNavigate } from "react-router-dom";
+import { VerUsers } from "./users/users";
 
 
 export const JuezScreen = () => {
@@ -21,6 +22,8 @@ export const JuezScreen = () => {
   const renderOptionContent = () => {
 
     switch (selectedOption) {
+      case 'Gestion de usuarios':
+        return <VerUsers/>;
       case 'Ver multas':
         return <VerMultas/>;
       case 'Administrar nomencladores':

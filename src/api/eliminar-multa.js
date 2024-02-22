@@ -1,5 +1,5 @@
-
-const url = `http://localhost:3000/infracciones`;
+const api = import.meta.env.VITE_APP_API;
+const url = `${api}/infracciones`;
 
 
 

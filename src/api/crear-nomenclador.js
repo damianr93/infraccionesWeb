@@ -1,6 +1,6 @@
 
-
-const url = `http://localhost:3000/nomencladores`;
+const api = import.meta.env.VITE_APP_API;
+const url = `${api}/nomencladores`;
 
 const postNomencladores = async (data) => {
   const token = localStorage.getItem('token');

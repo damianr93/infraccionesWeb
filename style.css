@@ -5,7 +5,8 @@
 }
 
 html {
-    background-image: url('./public/fondo.jpg');
+    /* background-image: url('./public/fondo.jpg'); */
+    background-color: #00AF5A;
     background-repeat: no-repeat;
     background-size: 100% 100vh;
     display: flex;
@@ -98,7 +99,7 @@ button:active {
     margin: 15px;
     width: 70%;
     border-radius: 15px;
-    border: 0.3px red solid;
+    border: 0.3px rgb(0, 0, 0) solid;
     overflow-y: scroll;
     height: 95vh;
     scrollbar-width: thin;
@@ -111,7 +112,7 @@ button:active {
     width: 90%;
     border-radius: 15px;
     border: 0.3px red solid;
-    height: 95vh;
+    height: 75vh;
 
 }
 
@@ -148,6 +149,11 @@ select {
     margin-top: 5px;
 }
 
+.editing div {
+    display: flex;
+    flex-direction: column;
+}
+
 .multas {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -180,11 +186,11 @@ select {
 }
 
 .nomencladorDiv {
-    font-size: 18px;
+    font-size: 14px;
     background-color: #000000;
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: row !important;
     align-items: center;
     margin: 5px;
     height: 30px;

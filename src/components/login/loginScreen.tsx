@@ -25,7 +25,7 @@ function LoginScreen() {
 
     try {
 
-      const user = await loginUser({ email: username, password });
+      const user = await loginUser({ username, password });
       if ( user.statusCode >= 400 && user.statusCode < 500) {
         return setError('Email o contraseña no son correctas');
       } else {
@@ -62,6 +62,7 @@ function LoginScreen() {
       <h1>Password</h1>
       <input
         type="password"
+        placeholder='*********'
         value={password}
         onChange={handlePasswordChange}
       />

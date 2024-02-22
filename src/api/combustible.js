@@ -1,6 +1,7 @@
 
-const URL = "http://localhost:3000/combustible"
+const api = import.meta.env.VITE_APP_API;
 
+const URL = `${api}/combustible`
 
 const getValorUnidadFija = async () => {
     const token = localStorage.getItem('token');

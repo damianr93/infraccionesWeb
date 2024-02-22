@@ -1,7 +1,7 @@
 
+const api = import.meta.env.VITE_APP_API;
 
-
-const url = `http://localhost:3000/nomencladores`
+const url = `${api}/nomencladores`
 
 const getNomenclador = async () => {
 

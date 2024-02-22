@@ -1,6 +1,6 @@
+const api = import.meta.env.VITE_APP_API;
 
-
-const url = `http://localhost:3000/users`;
+const url = `${api}/users`;
 
 const getUsers = async () => {
 

@@ -41,10 +41,16 @@ export const VerMultas = () => {
                 />
             }
 
+
             {isInputFocused ? (
-                <RenderMultasPorNumero numMulta={numMulta} multas={multas} onDeleteMulta={handleDeleteMulta}/>
+                <RenderMultasPorNumero 
+                numMulta={numMulta} 
+                multas={multas} 
+                onDeleteMulta={handleDeleteMulta}/>
             ) : (
-                <RenderMultas multas={multas} onDeleteMulta={handleDeleteMulta} />
+                <RenderMultas 
+                multas={multas} 
+                onDeleteMulta={handleDeleteMulta} />
             )}
         </>
     );

@@ -1,13 +1,14 @@
 const api = import.meta.env.VITE_APP_API;
+const url = `${api}/users/register`;
 
-const url = `${api}/combustible`;
 
-const patchValorUnFijo = async (id, data) => {
+
+const crearUser = async (data) => {
   const token = localStorage.getItem('token');
 
   try {
-    const response = await fetch(`${url}/${id}`, {
-      method: 'PATCH',
+    const response = await fetch(`${url}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -18,7 +19,7 @@ const patchValorUnFijo = async (id, data) => {
     if (!response.ok) {
 
       const errorMessage = await response.text();
-      throw JSON.parse(errorMessage);
+      throw new Error(`Error en la solicitud PATCH: ${errorMessage || response.statusText}`);
     }
 
     const result = await response.json();
@@ -30,4 +31,4 @@ const patchValorUnFijo = async (id, data) => {
   }
 };
 
-export default patchValorUnFijo;
+export default crearUser;

@@ -1,6 +1,6 @@
+const api = import.meta.env.VITE_APP_API;
 
-
-const url = `http://localhost:3000/infracciones`;
+const url = `${api}/infracciones`;
 
 const patchMultas = async (id, data) => {
   const token = localStorage.getItem('token');

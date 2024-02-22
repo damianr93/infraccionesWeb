@@ -77,8 +77,9 @@ export const VerNomencladores = () => {
                             nomencladores={nomencladores}
                             onDeleteNomenclador={handleDeleteNomenclador} />
 
-                )}
-
+                )
+            }
+            
 
         </>
     );

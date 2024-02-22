@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import patchNomencladores from "../../../api/editar-nomenclador.js"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 
-export const EditarNomenclador = () => {
-    const location = useLocation();
+
+export const EditarUser = () => {
+    const location = useLocation()
     const sessionStorageId = location.state.id
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
@@ -18,33 +18,39 @@ export const EditarNomenclador = () => {
         sessionStorage.setItem(`editValues-${sessionStorageId}`, JSON.stringify(values));
     }, [values]);
 
-
     const handleName = (event) => {
         setValues(prevValues => ({
             ...prevValues,
-            nombre: event.target.value
+            name: event.target.value
         }))
     }
 
-    const handleValor = (event) => {
+    const handleUsername = (event) => {
         setValues(prevValues => ({
             ...prevValues,
-            unidades_de_valor: event.target.value
+            username: event.target.value
+        }))
+    }
+
+    const handleEmail = (event) => {
+        setValues(prevValues => ({
+            ...prevValues,
+            email: event.target.value
+        }))
+    }
+
+    const handletipo = (event) => {
+        setValues(prevValues => ({
+            ...prevValues,
+            tipo: event.target.value
         }))
     }
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        const userInput = values.unidades_de_valor
-
-        const numeroDecimal = parseFloat(userInput.replace(',', '.'))
-
-        if (numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
-
         try {
-            await patchNomencladores(values.id, { ...values });
-
+            await 
             setMensajeError(null)
             return setMensajeExito('Cambios guardados con exito!')
 
@@ -61,19 +67,31 @@ export const EditarNomenclador = () => {
 
     return (
         <div className="editing">
-            <h1>Editando Nomenclador</h1>
+            <h1>Editando Usuario</h1>
             <form onSubmit={(event) => onSubmit(event)}>
-                <label>Nombre Del nomenclador:</label>
+                <label>Nombre:</label>
                 <input
                     type="text"
-                    value={values.nombre}
+                    value={values.name}
                     onChange={handleName}
                 />
-                <label>Valor:</label>
+                <label>Username:</label>
                 <input
-                    type="number"
-                    value={values.unidades_de_valor}
-                    onChange={handleValor}
+                    type="text"
+                    value={values.username}
+                    onChange={handleUsername}
+                />
+                <label>Email:</label>
+                <input
+                    type="text"
+                    value={values.email}
+                    onChange={handleEmail}
+                />
+                <label>Tipo::</label>
+                <input
+                    type="text"
+                    value={values.tipo}
+                    onChange={handletipo}
                 />
 
                 <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
@@ -101,5 +119,5 @@ export const EditarNomenclador = () => {
 
             </form>
         </div>
-    );
-};
+    )
+}

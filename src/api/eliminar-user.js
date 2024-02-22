@@ -1,24 +1,24 @@
 const api = import.meta.env.VITE_APP_API;
+const url = `${api}/users`;
 
-const url = `${api}/combustible`;
 
-const patchValorUnFijo = async (id, data) => {
+
+const deleteUser = async (id) => {
   const token = localStorage.getItem('token');
 
   try {
     const response = await fetch(`${url}/${id}`, {
-      method: 'PATCH',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
 
       const errorMessage = await response.text();
-      throw JSON.parse(errorMessage);
+      throw new Error(`Error en la solicitud DELETE: ${errorMessage || response.statusText}`);
     }
 
     const result = await response.json();
@@ -30,4 +30,4 @@ const patchValorUnFijo = async (id, data) => {
   }
 };
 
-export default patchValorUnFijo;
+export default deleteUser;
