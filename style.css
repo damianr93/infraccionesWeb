@@ -20,6 +20,17 @@ html {
 body {
     width: 100%;
 }
+.logoContainer {
+    align-self: flex-start;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.logo {
+    border-radius: 10px;
+    margin: auto;
+    width: 90%;
+}
 
 .login-container {
     margin: auto;

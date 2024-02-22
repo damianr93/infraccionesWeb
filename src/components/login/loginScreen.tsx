@@ -26,20 +26,24 @@ function LoginScreen() {
     try {
 
       const user = await loginUser({ username, password });
-      if ( user.statusCode >= 400 && user.statusCode < 500) {
+      if (user.statusCode >= 400 && user.statusCode < 500) {
         return setError('Email o contraseña no son correctas');
       } else {
         setError('');
       }
-      
+
       const token = localStorage.getItem('token')
-      if(token) localStorage.removeItem('token') 
+      if (token) localStorage.removeItem('token')
       localStorage.setItem('token', user.token);
 
-      switch(user.user.tipo) {
+      switch (user.user.tipo) {
         case 'Juez':
-          navigate('/juez', {replace:true})
-        break;
+          navigate('/juez', { replace: true })
+          break;
+        case 'Administrador':
+          navigate('/admin', { replace: true })
+          break;
+
       }
 
     } catch (error) {
