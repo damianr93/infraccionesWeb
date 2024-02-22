@@ -35,7 +35,7 @@ export const VerMultas = () => {
                 multas.length > 0 && <input
                     className="inputBuscarMulta"
                     type="text"
-                    placeholder="Buscar por N° de multa"
+                    placeholder="Buscar por N° de infracción"
                     onKeyDown={handleKeyDown}
                     onChange={handleInputChange}
                 />
