@@ -40,9 +40,9 @@ function LoginScreen() {
         case 'Juez':
           navigate('/juez', { replace: true })
           break;
-        case 'Administrador':
-          navigate('/admin', { replace: true })
-          break;
+        // case 'Administrador':
+        //   navigate('/admin', { replace: true })
+        //   break;
 
       }
 

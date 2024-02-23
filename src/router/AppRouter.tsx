@@ -3,7 +3,7 @@ import LoginScreen from "../components/login/loginScreen"
 import { JuezScreen } from "../components/juez/juezScreen"
 import { EditarInfraccion } from "../components/juez/multas/editar-infraccion"
 import { EditarNomenclador } from "../components/juez/nomencladores/editar-nomenclador"
-import { AdminScreen } from "../components/administrador/adminScreen"
+// import { AdminScreen } from "../components/administrador/adminScreen"
 // import { EditarUser } from "../components/juez/users/editar-user"
 
 export const AppRouter = () => {
@@ -13,7 +13,7 @@ export const AppRouter = () => {
     <Routes>
         <Route path="login" element={<LoginScreen/>} />
         <Route path="juez" element={<JuezScreen/>} />
-        <Route path="admin" element={<AdminScreen/>} />
+        {/* <Route path="admin" element={<AdminScreen/>} /> */}
         <Route path="edition-infraccion" element={<EditarInfraccion/>} />
         <Route path="edition-nomenclador" element={<EditarNomenclador/>} />
         {/* <Route path="edition-user" element={<EditarUser/>} /> */}
