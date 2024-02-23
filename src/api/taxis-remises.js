@@ -1,8 +1,8 @@
 const api = import.meta.env.VITE_APP_API;
 
-const url = `${api}/infracciones`
+const url = `${api}/transporte`
 
-const getMultas = async () => {
+const getTaxisRemises = async () => {
 
     const token = localStorage.getItem('token');
 
@@ -18,4 +18,4 @@ const getMultas = async () => {
     return resp
 }
 
-export default getMultas
+export default getTaxisRemises
