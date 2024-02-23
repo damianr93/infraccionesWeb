@@ -1,6 +1,6 @@
 
 
-export const CrearTransporte = ({addUser,cratingUser}) => {
+export const CrearTransporte = () => {
   return (
     <div>crear-transporte</div>
   )

@@ -1,6 +1,6 @@
 
 
-export const RenderTransportePorLegajo = ({legadoNum,transport,deletedTransp}) => {
+export const RenderTransportePorLegajo = () => {
   return (
     <div>render-transporte-por-legajo</div>
   )
