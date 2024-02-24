@@ -5,8 +5,7 @@
 }
 
 html {
-    /* background-image: url('./public/fondo.jpg'); */
-    background-color: #00AF5A;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 1) 100%), #00af5a;
     background-repeat: no-repeat;
     background-size: 100% 100vh;
     display: flex;
@@ -19,7 +18,10 @@ html {
 
 body {
     width: 100%;
+    height: 100vh;
+    text-align: center;
 }
+
 .logoContainer {
     align-self: flex-start;
     display: flex;
@@ -32,38 +34,53 @@ body {
     width: 91%;
 }
 
+.imgLogin {
+    border-radius: 10px;
+    min-width: 600px;
+    max-width: 600px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
 .login-container {
+    min-width: 600px;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.525);
+    /* background-image: url('./public/fondo.jpg'); */
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
     flex-direction: column;
     padding: 25px;
     border-radius: 10px;
     max-width: 600px;
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Añade sombra para resaltar el contenedor */
 }
 
 .login-container input {
-    padding: 5px;
-    width: 500px;
+    color: #333; /* Texto más oscuro */
+    padding: 10px;
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.503);
-
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo más claro */
+    margin-bottom: 15px; /* Añade un margen inferior para separar los inputs */
 }
 
 .login-container h1 {
-    color: white;
-    padding: 0;
+    color: #ffffff; /* Texto negro para resaltarlo */
+    font-size: 36px; /* Tamaño del texto aumentado */
+    font-weight: bold; /* Hace que el texto sea más intenso */
     margin: 15px auto;
-    text-shadow: 1px 2px #000000;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Texto con sombra más pronunciada */
 }
 
 button {
     padding: 10px 20px;
     background-color: #000000;
     color: white;
+    font-weight: bold;
+
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -177,6 +194,29 @@ select {
 
 }
 
+.fotosTaxiRemis {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.fotosTaxiRemis h3 {
+    text-align: center;
+}
+
+.img {
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    transition: 1s;
+}
+
+.img:hover {
+    border: 1px solid red;
+}
+
 .subElemento {
     margin-left: 30px;
 }
@@ -282,7 +322,7 @@ select {
     margin-bottom: 10px;
 }
 
-.ValorUnFija_Container input{
+.ValorUnFija_Container input {
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.503);

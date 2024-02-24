@@ -1,37 +1,40 @@
 import { useEffect, useState } from "react"
 import { useObtenerTransportes } from "../../../hook/obtenerTransportes"
 import { RenderTransporte } from "./render-transporte"
-// import { RenderTransportePorLegajo } from "./render-transporte-por-legajo"
-// import { CrearTransporte } from "./crear-transporte"
+import { RenderTransportePorLegajo } from "./render-transporte-por-legajo"
+import { CrearTransporte } from "./crear-transporte"
 
 
 export const VerTransportes = () => {
   const transportesDB = useObtenerTransportes()
-  // const [crearTransporte, setCrearTransporte] = useState(false)
-  // const [legajoNum, setLegajoNum] = useState('')
+  const [crearTransporte, setCrearTransporte] = useState(false)
+  const [legajoNum, setLegajoNum] = useState('')
   const [transportes, setTransportes] = useState([])
-  // const [isInputFocused, setIsInputFocused] = useState(false)
+  const [isInputFocused, setIsInputFocused] = useState(false)
 
   useEffect(() => {
     setTransportes(transportesDB);
 }, [transportesDB]);
 
-const handleKeyDown = () => {
-  console.log('busca el transporte')
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter') {
+    setIsInputFocused(true);
+}
 }
 
 const handleInputChange = (event) => {
-  console.log(event.target.value)
+  setLegajoNum(event.target.value);
+  if (event.target.value === '') setIsInputFocused(false)
 } 
 
-// const onCreateTransporte = () => {
-//   setCrearTransporte(true)
-// }
+const onCreateTransporte = () => {
+  setCrearTransporte(true)
+}
 
-// const handleAddtransporte = (transporte) => {
-//   transportes.push(transporte)
-//   setTransportes(transporte)
-// }
+const handleAddtransporte = (transporte) => {
+  transportes.push(transporte)
+  setTransportes(transportes)
+}
 
 const onDeleteTransporte = (id) => {
   const tranposteNotDeleted =  transportes.filter(transp => id !== transp.id)
@@ -50,22 +53,19 @@ const onDeleteTransporte = (id) => {
         onChange={handleInputChange}
       />
     }
-    {/* <button onClick={() => onCreateTransporte()}>Dar de alta nuevo usuario</button> */}
+    <button onClick={() => onCreateTransporte()}>Dar de alta nuevo transporte</button>
 
-    <RenderTransporte
-            transportes={transportes}
-            deletedTransp={onDeleteTransporte} />
 
-    {/* {
+    {
       crearTransporte ?
         <CrearTransporte
-          addUser={handleAddtransporte}
-          cratingUser={setCrearTransporte}
+          addTransporte={handleAddtransporte}
+          cratingTransp={setCrearTransporte}
         />
         :
         (isInputFocused ? (
           <RenderTransportePorLegajo
-            legadoNum={legajoNum}
+            legajoNum={legajoNum}
             transport={transportes}
             deletedTransp={onDeleteTransporte} />
         ) : (
@@ -75,7 +75,7 @@ const onDeleteTransporte = (id) => {
         ))
         
 
-    } */}
+    }
 
   </>
   )

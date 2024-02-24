@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import loginUser from '../../api/login.js'
+import loginUser from '../../api/login'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -54,25 +54,29 @@ function LoginScreen() {
 
 
   return (
-    <form onSubmit={(event) => onSubmit(event)} className="login-container">
-      <h1>Username</h1>
-      <input
-        type="text"
-        placeholder='Nombre de usuario'
-        value={username}
-        onChange={handleUsernameChange}
-      />
+    <>
+    <img className='imgLogin' src="https://infracciones-app.s3.sa-east-1.amazonaws.com/la_rioja_logo.jpeg" alt="Logo" />
+      <form onSubmit={(event) => onSubmit(event)} className="login-container">
+        <h1>Username</h1>
+        <input
+          type="text"
+          placeholder='Nombre de usuario'
+          value={username}
+          onChange={handleUsernameChange}
+        />
 
-      <h1>Password</h1>
-      <input
-        type="password"
-        placeholder='*********'
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      {error && <div className='errorMessage'>{error}</div>}
-      <button type='submit'>Login</button>
-    </form>
+        <h1>Password</h1>
+        <input
+          type="password"
+          placeholder='*********'
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        {error && <div className='errorMessage'>{error}</div>}
+        <button type='submit'>Login</button>
+      </form>
+    </>
+
   )
 }
 

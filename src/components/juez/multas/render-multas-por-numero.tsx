@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import deleteMulta from '../../../api/eliminar-multa.js';
+import deleteMulta from '../../../api/eliminar-multa';
 
 export const RenderMultasPorNumero = ({ numMulta, multas, onDeleteMulta }) => {
     const navigation = useNavigate()

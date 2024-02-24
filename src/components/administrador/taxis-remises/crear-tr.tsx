@@ -1,7 +1,8 @@
 import { useState } from "react"
-import crearTransporte from "../../../api/crear-transporte"
+import crearTaxiRemis from "../../../api/crear-taxi-remis"
 
-export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
+
+export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
   const [mensajeError, setMensajeError] = useState('')
   const [values, setValues] = useState({
     numero_legajo: '',
@@ -15,10 +16,12 @@ export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
     nombre_conductor: '',
     poliza_seguro: '',
     vtv: '',
-    tipo_transporte: '',
+    revision_salud: '',
+    desinfeccion_vehicular: '',
+    taximetro: '',
+    tipo: '',
     observaciones: '',
   })
-
   const handleNumLegado = (event) => {
     setValues(prevValues => ({
       ...prevValues,
@@ -87,10 +90,30 @@ export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
       vtv: event.target.value
     }))
   }
+
+  const handleRevisionSalud = (event) => {
+    setValues(prevValues => ({
+      ...prevValues,
+      revision_salud: event.target.value
+    }))
+  }
+  const handleDesinfeccionVehicular = (event) => {
+    setValues(prevValues => ({
+      ...prevValues,
+      desinfeccion_vehicular: event.target.value
+    }))
+  }
+  const handleTaximetro = (event) => {
+    setValues(prevValues => ({
+      ...prevValues,
+      taximetro: event.target.value
+    }))
+  }
+
   const handleTipoTransporte = (event) => {
     setValues(prevValues => ({
       ...prevValues,
-      tipo_transporte: event.target.value
+      tipo: event.target.value
     }))
   }
   const handleObservaciones = (event) => {
@@ -100,15 +123,14 @@ export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
     }))
   }
 
+
   const onSubmit = async (event) => {
     event.preventDefault();
+
     try {
-
-
-
-      const newTranposte = await crearTransporte({ ...values });
-      addTransporte(newTranposte)
-      cratingTransp(false)
+      const newTaxiRemis = await crearTaxiRemis({ ...values });
+      addTaxiRemis(newTaxiRemis)
+      cratingTR(false)
       setMensajeError(null)
 
     } catch (error) {
@@ -118,9 +140,10 @@ export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
   }
 
 
+
   return (
     <div className="editing">
-      <h1>Creando transporte N° Legajo{values.numero_legajo}</h1>
+      <h1>Editando transporte N° {values.numero_legajo}</h1>
       <form onSubmit={(event) => onSubmit(event)}>
         <div>
           <label>Numero de legajo:</label>
@@ -210,20 +233,53 @@ export const CrearTransporte = ({ addTransporte, cratingTransp }) => {
             value={values.vtv}
             onChange={handleVtv}
           >
-            <option value="">Seleccione una opción</option>
+            <option>Seleccione una opción</option>
             <option value="Vigente">Vigente</option>
             <option value="Vencida">Vencida</option>
           </select>
         </div>
         <div>
+          <label>Revision de salud:</label>
+          <select
+            value={values.revision_salud}
+            onChange={handleRevisionSalud}
+          >
+            <option>Seleccione una opción</option>
+            <option value="Vigente">Vigente</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
+        </div>
+        <div>
+          <label>Desinfección vehicular:</label>
+          <select
+            value={values.desinfeccion_vehicular}
+            onChange={handleDesinfeccionVehicular}
+          >
+            <option>Seleccione una opción</option>
+            <option value="Regular">Regular</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
+        </div>
+        <div>
+          <label>Taximetro:</label>
+          <select
+            value={values.taximetro}
+            onChange={handleTaximetro}
+          >
+            <option>Seleccione una opción</option>
+            <option value="En condiciones">En condiciones</option>
+            <option value="Novedades">Novedades</option>
+          </select>
+        </div>
+        <div>
           <label>Tipo:</label>
           <select
-            value={values.tipo_transporte}
+            value={values.tipo}
             onChange={handleTipoTransporte}
           >
-            <option value="">Seleccione una opción</option>
-            <option value="Carga-Descarga">Carga-Descarga</option>
-            <option value="Aridos">Aridos</option>
+            <option>Seleccione una opción</option>
+            <option value="Remis">Remis</option>
+            <option value="Taxi">Taxi</option>
           </select>
         </div>
         <div>

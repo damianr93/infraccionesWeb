@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getMultas from '../api/multas.js';
+import getMultas from '../api/multas';
 
 export const useObtenerMultas = () => {
     const [multas, setMultas] = useState([]);

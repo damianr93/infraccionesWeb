@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import deleteTransporte from "../../../api/eliminar-transporte.js"
+import deleteTransporte from "../../../api/eliminar-transporte"
 
 export const RenderTransporte = ({ transportes, deletedTransp }) => {
     const navigation = useNavigate()

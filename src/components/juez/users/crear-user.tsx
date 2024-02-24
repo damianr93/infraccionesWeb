@@ -1,5 +1,5 @@
 import { useState } from "react"
-import crearUser from '../../../api/crear-user.js'
+import crearUser from '../../../api/crear-user'
 
 export const CrearUser = ({addUser,cratingUser}) => {
     const [mensajeError, setMensajeError] = useState('')

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import deleteNomenclador from '../../../api/eliminar-nomenclador.js'
+import deleteNomenclador from '../../../api/eliminar-nomenclador'
 import { useState } from "react";
 
 export const RenderNomencladorPorNombre = ({ nomenclador, onDeleteNomenclador }) => {

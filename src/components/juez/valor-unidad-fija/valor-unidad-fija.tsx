@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useObtenerValorUnFija } from "../../../hook/obtenerValorUnFija"
-import patchValorUnFijo from '../../../api/editar-valor-un-fijo.js'
+import patchValorUnFijo from '../../../api/editar-valor-un-fijo'
 
 interface valorFijo {
   valor: number,

@@ -4,6 +4,8 @@ import { JuezScreen } from "../components/juez/juezScreen"
 import { EditarInfraccion } from "../components/juez/multas/editar-infraccion"
 import { EditarNomenclador } from "../components/juez/nomencladores/editar-nomenclador"
 import { AdminScreen } from "../components/administrador/adminScreen"
+import { EditarTransporte } from "../components/administrador/transportes/editar-transporte"
+import { EditarTaxiRemis } from "../components/administrador/taxis-remises/editar-tr"
 
 export const AppRouter = () => {
 
@@ -15,6 +17,8 @@ export const AppRouter = () => {
         <Route path="admin" element={<AdminScreen/>} />
         <Route path="edition-infraccion" element={<EditarInfraccion/>} />
         <Route path="edition-nomenclador" element={<EditarNomenclador/>} />
+        <Route path="edition-transporte" element={<EditarTransporte/>} />
+        <Route path="edition-taxi-remis" element={<EditarTaxiRemis/>} />
 
 
         <Route path="/" element={<Navigate to="login"/>} />

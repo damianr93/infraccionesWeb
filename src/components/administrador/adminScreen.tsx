@@ -3,8 +3,8 @@ import { ScreenBarAdmin } from "./screen-bar-admin";
 import { useEffect, useState } from "react";
 import { VerUsers } from "../juez/users/users";
 import { VerTurismo } from "./turismo/turismo";
-import { VerTaxisRemises } from "./taxis-remises/taxis-remises";
 import { VerTransportes } from "./transportes/transportes";
+import { VerTaxiRemis } from "./taxis-remises/taxis-remises";
 
 export const AdminScreen = () => {
 
@@ -26,7 +26,7 @@ export const AdminScreen = () => {
       case 'Trasnportes':
         return <VerTransportes/>;
       case 'Taxis-remises':
-        return <VerTaxisRemises/>;
+        return <VerTaxiRemis/>;
       case 'turismo':
         return <VerTurismo/>;
       default:

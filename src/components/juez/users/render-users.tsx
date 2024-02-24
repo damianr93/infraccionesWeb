@@ -1,5 +1,5 @@
 // import { useNavigate } from 'react-router-dom'
-import deleteUser from '../../../api/eliminar-user.js'
+import deleteUser from '../../../api/eliminar-user'
 
 export const RenderUsers = ({ users, deletedUser }) => {
     // const navigation = useNavigate()

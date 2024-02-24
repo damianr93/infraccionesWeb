@@ -1,5 +1,5 @@
 import { useState } from "react"
-import postNomencladores from '../../../api/crear-nomenclador.js'
+import postNomencladores from '../../../api/crear-nomenclador'
 
 
 export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {

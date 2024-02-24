@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getNomenclador from '../api/nomenclador.js';
+import getNomenclador from '../api/nomenclador';
 
 export const useObtenerNomenclador = () => {
     const [nomenclador, setNomenclador] = useState([]);

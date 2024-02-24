@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import patchNomencladores from "../../../api/editar-nomenclador.js"
+import patchNomencladores from "../../../api/editar-nomenclador"
 
 export const EditarNomenclador = () => {
     const location = useLocation();

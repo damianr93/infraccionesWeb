@@ -1,4 +1,4 @@
-import deleteUser from '../../../api/eliminar-user.js'
+import deleteUser from '../../../api/eliminar-user'
 
 export const RenderUserPorNombre = ({ usernam, users, deletedUser }) => {
   const user = users.find((user) => usernam === user.username);

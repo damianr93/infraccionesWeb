@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getValorUnidadFija from '../api/combustible.js';
+import getValorUnidadFija from '../api/combustible';
 
 
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useObtenerNomenclador } from "../../../hook/obtenerNomenclador";
 import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
-import patchMultas from "../../../api/editar-multa.js"
+import patchMultas from "../../../api/editar-multa"
 
 export const EditarInfraccion = () => {
     const location = useLocation();
