@@ -6,6 +6,8 @@ import { EditarNomenclador } from "../components/juez/nomencladores/editar-nomen
 import { AdminScreen } from "../components/administrador/adminScreen"
 import { EditarTransporte } from "../components/administrador/transportes/editar-transporte"
 import { EditarTaxiRemis } from "../components/administrador/taxis-remises/editar-tr"
+import { CiudadanoScreen } from "../components/usuarios-ciudadano/ciudadanoScreen"
+
 
 export const AppRouter = () => {
 
@@ -15,6 +17,7 @@ export const AppRouter = () => {
         <Route path="login" element={<LoginScreen/>} />
         <Route path="juez" element={<JuezScreen/>} />
         <Route path="admin" element={<AdminScreen/>} />
+        <Route path="ciudadano" element={<CiudadanoScreen/>} />
         <Route path="edition-infraccion" element={<EditarInfraccion/>} />
         <Route path="edition-nomenclador" element={<EditarNomenclador/>} />
         <Route path="edition-transporte" element={<EditarTransporte/>} />

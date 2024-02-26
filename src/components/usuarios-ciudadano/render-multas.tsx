@@ -1,18 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import deleteMulta from '../../../api/eliminar-multa';
-import { CrudButtons, ImageContainer, InfoItem, MultaCard, MultaInfo } from "./multas-styles";
+import { ImageContainer, InfoItem, MultaCard, MultaInfo } from "./multas-styles";
 
-export const RenderMultas = ({ multas, onDeleteMulta }) => {
-    const navigation = useNavigate();
-
-    const onClickEdit = (multa) => {
-        navigation('/edition-infraccion', { state: multa });
-    };
-
-    const onClickDelete = async (multa) => {
-        onDeleteMulta(multa.id);
-        await deleteMulta(multa.id);
-    };
+export const RenderMultasCiudadano = ({ multas}) => {
 
     return (
         <>
@@ -52,10 +40,6 @@ export const RenderMultas = ({ multas, onDeleteMulta }) => {
                             </>
                         }
                     </ImageContainer>
-                    <CrudButtons>
-                        <button className="edit" onClick={() => onClickEdit(multa)}>Editar</button>
-                        <button className="delete" onClick={() => onClickDelete(multa)}>Eliminar</button>
-                    </CrudButtons>
                 </MultaCard>
             ))}
         </>

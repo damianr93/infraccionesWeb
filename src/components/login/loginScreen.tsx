@@ -53,6 +53,10 @@ function LoginScreen() {
 
   }
 
+  const handleBtnVerMultas = () => {
+    navigate('/ciudadano', { replace: true })
+  }
+
 
   return (
     <>
@@ -79,6 +83,11 @@ function LoginScreen() {
             <button type='submit'>Ingresar</button>
           </form>
         )}
+
+        <button 
+        className='VerMisMultasBtn'
+        onClick={handleBtnVerMultas}
+        >Ver mis multas</button>
 
     </>
 
