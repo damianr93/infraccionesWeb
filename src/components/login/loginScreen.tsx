@@ -84,10 +84,13 @@ function LoginScreen() {
           </form>
         )}
 
-        <button 
-        className='VerMisMultasBtn'
-        onClick={handleBtnVerMultas}
+      {
+        !loading &&
+        <button
+          className='VerMisMultasBtn'
+          onClick={handleBtnVerMultas}
         >Ver mis multas</button>
+      }
 
     </>
 
