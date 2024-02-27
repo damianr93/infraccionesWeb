@@ -3,6 +3,7 @@ import { useObtenerNomenclador } from '../../../hook/obtenerNomenclador';
 import { RenderNomenclador } from './render-nomencladores';
 import { RenderNomencladorPorNombre } from './render-nomenclador-por-nombre';
 import { CrearNomenclador } from './crear-nomenclador';
+import { BallTriangle } from "react-loader-spinner"
 
 export const VerNomencladores = () => {
     const nomenclador = useObtenerNomenclador()
@@ -11,10 +12,12 @@ export const VerNomencladores = () => {
     const [nomencladorName, setNomencladorName] = useState('')
     const [nomencladorSelected, setNomencladorSelected] = useState({})
     const [nomencladores, setNomencladores] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
         setNomencladores(nomenclador)
+        if (nomenclador.length > 0) setLoading(false)
 
     }, [nomenclador])
 
@@ -61,6 +64,25 @@ export const VerNomencladores = () => {
                 <button onClick={() => onClickAddNomenclador()}>Agregar Nomenclador</button>
 
             </div>
+
+            {
+                loading && (
+                    <div className="loaderInScreens">
+                        <BallTriangle
+                            height={100}
+                            width={100}
+                            radius={5}
+                            color="#4fa94d"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+
+                    </div>
+
+                )
+            }
 
 
             {isCreateNomenclador ?

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import patchNomencladores from "../../../api/editar-nomenclador"
+import { BallTriangle } from "react-loader-spinner"
 
 export const EditarNomenclador = () => {
     const location = useLocation();
     const sessionStorageId = location.state.id
+    const [loading, setLoading] = useState(false);
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
     const [values, setValues] = useState(() => {
@@ -17,7 +19,6 @@ export const EditarNomenclador = () => {
     useEffect(() => {
         sessionStorage.setItem(`editValues-${sessionStorageId}`, JSON.stringify(values));
     }, [values]);
-
 
     const handleName = (event) => {
         setValues(prevValues => ({
@@ -35,22 +36,25 @@ export const EditarNomenclador = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        setMensajeError(null)
+        setMensajeExito(null)
+        setLoading(true)
 
-        const userInput = values.unidades_de_valor
-
+        const userInput = values.unidades_de_valor.toString()
         const numeroDecimal = parseFloat(userInput.replace(',', '.'))
-
         if (numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
 
         try {
-            await patchNomencladores(values.id, { ...values });
+            await patchNomencladores(values.id, { ...values, unidades_de_valor: values.unidades_de_valor.toString() });
 
             setMensajeError(null)
+            setLoading(false)
             return setMensajeExito('Cambios guardados con exito!')
 
         } catch (error) {
             console.error('Error al enviar la solicitud PATCH:', error.message);
             setMensajeExito(null)
+            setLoading(false)
             return setMensajeError(error.message)
         }
     }
@@ -97,6 +101,20 @@ export const EditarNomenclador = () => {
                 >
                     Volver
                 </button>
+                {
+                    loading && (
+                        <BallTriangle
+                            height={50}
+                            width={50}
+                            radius={5}
+                            color="#4fa94d"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                    )
+                }
 
 
             </form>

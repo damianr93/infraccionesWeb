@@ -1,13 +1,8 @@
-// import { useNavigate } from 'react-router-dom'
+
 import deleteUser from '../../../api/eliminar-user'
 
 export const RenderUsers = ({ users, deletedUser }) => {
-    // const navigation = useNavigate()
-    
 
-    // const onClickEdit = (user) => {
-    //     navigation('/edition-user', { state: user })
-    // }
 
     const onClickDelete = async(user) => {
         deletedUser(user.id)
@@ -24,7 +19,6 @@ export const RenderUsers = ({ users, deletedUser }) => {
                     <li>Tipo de usuario: {user.tipo}</li>
                 </ul>
                 <div className='buttonsCrud'>
-                    {/* <button onClick={() => onClickEdit(user)}>Editar</button> */}
                     <button onClick={() => onClickDelete(user)}>Eliminar</button>
                 </div>
             </div>

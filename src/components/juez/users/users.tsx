@@ -3,6 +3,9 @@ import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
 import { RenderUserPorNombre } from "./render-user-por-nombre";
 import { RenderUsers } from "./render-users";
 import { CrearUser } from "./crear-user";
+import { BallTriangle } from "react-loader-spinner";
+
+
 
 
 export const VerUsers = () => {
@@ -11,9 +14,14 @@ export const VerUsers = () => {
     const [username, setUsername] = useState('')
     const [users, setUsers] = useState([])
     const [isInputFocused, setIsInputFocused] = useState(false)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
         setUsers(usersInDB);
+        if (usersInDB.length > 0) setLoading(false)
+
+
     }, [usersInDB]);
 
     const handleKeyDown = (event) => {
@@ -43,34 +51,52 @@ export const VerUsers = () => {
 
     return (
         <>
+
             {
                 users.length > 0 && <input
                     className="inputBuscarMulta"
                     type="text"
                     placeholder="Buscar por username"
-                onKeyDown={handleKeyDown}
-                onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    onChange={handleInputChange}
                 />
             }
             <button onClick={() => onCreateUser()}>Dar de alta nuevo usuario</button>
-
             {
-                crearUser ? 
-                <CrearUser
-                addUser={handleAddUser}
-                cratingUser={setCrearUser}
-                /> 
-                :
-                (isInputFocused ? (
-                    <RenderUserPorNombre
-                    usernam={username}
-                    users={users}
-                    deletedUser={onDeleteUser}/>
-                ) : (
-                    <RenderUsers 
-                    users={users} 
-                    deletedUser={onDeleteUser}/>
-                ))
+                loading && (
+                    <div className="loaderInScreens">
+                        <BallTriangle
+                            height={100}
+                            width={100}
+                            radius={5}
+                            color="#4fa94d"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+
+                    </div>
+
+                )
+            }
+            {
+                crearUser ?
+                    <CrearUser
+                        addUser={handleAddUser}
+                        cratingUser={setCrearUser}
+                    />
+                    :
+                    (isInputFocused ? (
+                        <RenderUserPorNombre
+                            usernam={username}
+                            users={users}
+                            deletedUser={onDeleteUser} />
+                    ) : (
+                        <RenderUsers
+                            users={users}
+                            deletedUser={onDeleteUser} />
+                    ))
 
             }
         </>

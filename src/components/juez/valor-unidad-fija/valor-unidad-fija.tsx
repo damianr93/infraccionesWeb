@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useObtenerValorUnFija } from "../../../hook/obtenerValorUnFija"
 import patchValorUnFijo from '../../../api/editar-valor-un-fijo'
+import { BallTriangle } from "react-loader-spinner"
 
 interface valorFijo {
   valor: number,
@@ -14,25 +15,26 @@ export const ValorUnidadFija = () => {
   const [newValue, setNewValue] = useState<number | undefined>()
   const [mensajeError, setMensajeError] = useState(null)
   const [mensajeExito, setMensajeExito] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setValorUnFija(valorUn)
-  }, [valorUn, setValorUnFija])
+    if (valorUn !== undefined) setLoading(false)
+  }, [valorUn])
 
   const handleValue = (event) => {
-    if(event.target.valor <= 0) return
+    if (event.target.valor <= 0) return
     const value = parseFloat(event.target.value)
     setNewValue(value)
   }
 
   const onClickUpdateValue = async () => {
-
-    if(newValue <= 0) return setMensajeError('Ingrese un valor mayor a 0')
+    if (newValue <= 0) return setMensajeError('Ingrese un valor mayor a 0')
     valorUnFija.valor = newValue
-
-    try {
     
-      if(valorUnFija.valor <= 0) return setMensajeError('Ingrese un valor mayor a 0')
+    try {
+
+      if (valorUnFija.valor <= 0) return setMensajeError('Ingrese un valor mayor a 0')
       await patchValorUnFijo(valorUnFija.id, valorUnFija)
 
       setValorUnFija(prevValues => ({
@@ -72,6 +74,24 @@ export const ValorUnidadFija = () => {
         <div className="mensajeError">
           <p>{mensajeError}</p>
         </div>
+      }
+            {
+        loading && (
+          <div className="loaderInScreens">
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+
+          </div>
+
+        )
       }
     </div>
   )

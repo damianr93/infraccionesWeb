@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { RenderMultas } from './render-multas';
 import { RenderMultasPorNumero } from './render-multas-por-numero';
 import { useObtenerMultas } from '../../../hook/obtenerMultas';
-import Loading from 'react-fullscreen-loading';
+import { BallTriangle } from "react-loader-spinner"
 
 export const VerMultas = () => {
     const [isInputFocused, setIsInputFocused] = useState(false);
@@ -13,7 +13,7 @@ export const VerMultas = () => {
 
     useEffect(() => {
         setMultas(infracciones);
-        setLoading(false);
+        if (infracciones.length > 0) setLoading(false)
     }, [infracciones]);
 
     const handleKeyDown = (event) => {
@@ -35,9 +35,6 @@ export const VerMultas = () => {
     return (
         <>
             {
-                loading && <Loading loading background="radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 1) 100%), #00af5a" loaderColor="white" />
-            }
-            {
                 multas.length > 0 && <input
                     className="inputBuscarMulta"
                     type="text"
@@ -47,16 +44,35 @@ export const VerMultas = () => {
                 />
             }
 
+            {
+                loading && (
+                    <div className="loaderInScreens">
+                        <BallTriangle
+                            height={100}
+                            width={100}
+                            radius={5}
+                            color="#4fa94d"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+
+                    </div>
+
+                )
+            }
+
 
             {isInputFocused ? (
-                <RenderMultasPorNumero 
-                numMulta={numMulta} 
-                multas={multas} 
-                onDeleteMulta={handleDeleteMulta}/>
+                <RenderMultasPorNumero
+                    numMulta={numMulta}
+                    multas={multas}
+                    onDeleteMulta={handleDeleteMulta} />
             ) : (
-                <RenderMultas 
-                multas={multas} 
-                onDeleteMulta={handleDeleteMulta} />
+                <RenderMultas
+                    multas={multas}
+                    onDeleteMulta={handleDeleteMulta} />
             )}
         </>
     );

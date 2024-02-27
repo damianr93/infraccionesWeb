@@ -1,5 +1,6 @@
 import { useState } from "react"
 import postNomencladores from '../../../api/crear-nomenclador'
+import { BallTriangle } from "react-loader-spinner"
 
 
 export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
@@ -8,6 +9,7 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
         unidades_de_valor: ''
     })
     const [mensajeError, setMensajeError] = useState(null)
+    const [loading, setLoading] = useState(false);
 
     const handleName = (event) => {
         setValues(prevValues => ({
@@ -27,6 +29,8 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        setMensajeError(null)
+        setLoading(true)
         try {
 
             const userInput = values.unidades_de_valor
@@ -43,9 +47,11 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
             addNomenclador(newNomenclador)
             cratingNomenclador(false)
             setMensajeError(null)
+            setLoading(false)
 
         } catch (error) {
             console.error('Error al enviar la solicitud PATCH:', error.message);
+            setLoading(false)
             return setMensajeError(error.message)
         }
     }
@@ -68,6 +74,20 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
                 />
 
                 <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
+                {
+                    loading && (
+                        <BallTriangle
+                            height={50}
+                            width={50}
+                            radius={5}
+                            color="#4fa94d"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                    )
+                }
 
                 {mensajeError &&
                     <div className="mensajeError">

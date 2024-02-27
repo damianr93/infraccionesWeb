@@ -3,12 +3,14 @@ import { useLocation } from "react-router-dom";
 import { useObtenerNomenclador } from "../../../hook/obtenerNomenclador";
 import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
 import patchMultas from "../../../api/editar-multa"
+import { BallTriangle } from "react-loader-spinner"
 
 export const EditarInfraccion = () => {
     const location = useLocation();
     const nomenclador = useObtenerNomenclador()
     const users = useObtenerUsuarios()
     const sessionStorageId = location.state.id
+    const [loading, setLoading] = useState(false);
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
     const [values, setValues] = useState(() => {
@@ -145,6 +147,9 @@ export const EditarInfraccion = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        setMensajeError(null)
+        setMensajeExito(null)
+        setLoading(true)
 
         const id_nomencladoresNuevos = values.id_nomenclador.map(nomenclador => nomenclador.id);
         try {
@@ -156,11 +161,13 @@ export const EditarInfraccion = () => {
             });
 
             setMensajeError(null)
+            setLoading(false)
             return setMensajeExito('Cambios guardados con exito!')
 
         } catch (error) {
             console.error('Error al enviar la solicitud PATCH:', error.message);
             setMensajeExito(null)
+            setLoading(false)
             return setMensajeError(error.message)
         }
     }
@@ -328,6 +335,24 @@ export const EditarInfraccion = () => {
                     >
                         Volver
                     </button>
+                    {
+                        loading && (
+                            <div className="loaderInScreens">
+                                <BallTriangle
+                                    height={50}
+                                    width={50}
+                                    radius={5}
+                                    color="#4fa94d"
+                                    ariaLabel="ball-triangle-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+
+                            </div>
+
+                        )
+                    }
 
                     {mensajeExito && !mensajeError &&
                         <div className="mensajeExito">
