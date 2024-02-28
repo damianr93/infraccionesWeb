@@ -81,6 +81,8 @@ const CrudButtons = styled.div`
         &:hover {
             background-color: #2980b9;
         }
+        margin: 0 auto;
+        margin-bottom: 20px;
     }
 
     button.delete {

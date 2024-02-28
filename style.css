@@ -233,7 +233,6 @@ select {
     margin-left: 30px;
     padding: 5px;
     border-radius: 10px;
-
 }
 
 .nomencladorDiv {
@@ -339,9 +338,77 @@ select {
 }
 
 .ciudadano {
-    margin:15px auto;
-    
-    
+    background-color: #1b1e1b73;
+    width: 100%;
+    border-radius: 15px;
+    border: 0.3px rgb(0, 0, 0) solid;
+    height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: #a0a0a0 #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ciudadanoH1 {
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
+    margin-top: 5px;
+    position: absolute;
+    top: 0;
+    margin-top: 25px;
+}
+.ciudadanoH2 {
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
+    margin-top: 5px;
+    position: absolute;
+    top: 0;
+    margin-top: 70px;
+    padding: 10px;
+}
+.ciudadanoH3 {
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
+    margin-top: 5px;
+    margin-top: 120px;
+    padding: 10px;
+}
+.ciudadanoInput {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.503);
+    width: 3500px;
+    position: absolute;
+    top: 0;
+    margin-top: 150px;
+}
+.ciudadanoButton {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    top: 0;
+    margin-top: 250px;
+}
+.ciudadanoRenderMultas {
+    background-color: #1b1e1b73;
+    margin: 15px;
+    width: 100%;
+    border-radius: 15px;
+    border: 0.3px rgb(0, 0, 0) solid;
+    overflow-y: scroll;
+    height: 95vh;
+    scrollbar-width: thin;
+    scrollbar-color: #a0a0a0 #f0f0f0;
+    position: absolute;
+    top: 0;
+    margin-top: 300px;
 }
 
 .loaderInScreens {
