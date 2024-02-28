@@ -2,9 +2,9 @@ const api = import.meta.env.VITE_APP_API;
 
 const url = `${api}/infracciones/ciudadano`
 
-const getMultasPorPatente = async (dominio) => {
+const getMultasPorPatenteOrNumInfraccion = async (value) => {
 
-    const resp = await fetch(`${url}?dominio=${dominio}`, {
+    const resp = await fetch(`${url}?dominioOrNumInfraccion=${value}`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -15,4 +15,4 @@ const getMultasPorPatente = async (dominio) => {
     return resp
 }
 
-export default getMultasPorPatente
+export default getMultasPorPatenteOrNumInfraccion

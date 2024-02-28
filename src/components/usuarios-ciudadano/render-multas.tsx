@@ -1,6 +1,21 @@
-import { ImageContainer, InfoItem, MultaCard, MultaInfo } from "./multas-styles";
+import { CrudButtons, ImageContainer, InfoItem, MultaCard, MultaInfo } from "./multas-styles";
+import generarLinkPago from "../../api/multas-generar-link";
+import { ProgressBar } from "react-loader-spinner"
+import { useState } from "react";
 
 export const RenderMultasCiudadano = ({ multas}) => {
+
+    const [loading, setLoading] = useState(false)
+
+    const pagarMulta = (id) => {
+        setLoading(true)
+        generarLinkPago(id)
+            .then((res) => {
+                setLoading(false)
+                window.open(res, '_blank');
+                window.location.reload();
+            })
+    }
 
     return (
         <>
@@ -15,7 +30,7 @@ export const RenderMultasCiudadano = ({ multas}) => {
                         <InfoItem><span>Modelo del vehículo:</span> {multa.modelo_vehiculo} </InfoItem>
                         <InfoItem><span>Color del vehículo:</span> {multa.color_vehiculo} </InfoItem>
                         <InfoItem><span>Número de Licencia del conductor:</span> {multa.numero_licencia_conductor} </InfoItem>
-                        <InfoItem><span>Ubicación de la infracción:</span> {multa.ubicacion_infraccion} </InfoItem>
+                        <InfoItem><span>Ubicación de la infracción:</span> <a href={`https://www.google.com/maps/search/?api=1&query=${multa.ubicacion_infraccion}`} target="_blank">VER MAPA</a> </InfoItem>
                         <InfoItem><span>Referencia de ubicación:</span> {multa.referencia_ubicacion} </InfoItem>
                         <InfoItem><span>Infracciones nomenclador:</span>
                             {multa.id_nomenclador.map((nomenclador, nomencladorIndex) => (
@@ -40,6 +55,22 @@ export const RenderMultasCiudadano = ({ multas}) => {
                             </>
                         }
                     </ImageContainer>
+                    <CrudButtons>
+                                <button className="edit" disabled={loading} onClick={
+                                    () => pagarMulta(multa.id)
+                                }>{
+                                        loading ? <ProgressBar
+                                            visible={loading}
+                                            height="20"
+                                            width="20"
+                                            barColor="white"
+                                            borderColor="white"
+                                            ariaLabel="progress-bar-loading"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                        /> : 'Pagar'
+                                }</button>
+                        </CrudButtons>
                 </MultaCard>
             ))}
         </>
