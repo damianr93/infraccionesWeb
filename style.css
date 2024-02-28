@@ -351,3 +351,7 @@ select {
     justify-content: center;
     align-items: center;
 }
+
+.cargaDatosErro {
+    margin: auto;
+}

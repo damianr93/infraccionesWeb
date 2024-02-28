@@ -1,7 +1,10 @@
 
 
-export const RenderTranspTurismo = ({ transpTurismo }) => {
+export const RenderTranspTurismo = ({ transpTurismo}) => {
+
+
     return (
+
         transpTurismo.map((transp, index) => (
             <div key={index} className='multas'>
                 <ul>
@@ -14,7 +17,7 @@ export const RenderTranspTurismo = ({ transpTurismo }) => {
                                 <li className='subElemento'>{conductor}</li>
                             ))
                         }
-                    </ul> ): null
+                    </ul>) : null
 
                     }</li>
                     <li>Fecha de ingreso: {transp.fecha_hora_ingreso}</li>
@@ -22,5 +25,6 @@ export const RenderTranspTurismo = ({ transpTurismo }) => {
                 </ul>
             </div>
         ))
+     
     )
 }

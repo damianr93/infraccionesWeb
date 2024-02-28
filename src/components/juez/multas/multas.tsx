@@ -1,20 +1,38 @@
 import { useEffect, useState } from 'react';
 import { RenderMultas } from './render-multas';
 import { RenderMultasPorNumero } from './render-multas-por-numero';
-import { useObtenerMultas } from '../../../hook/obtenerMultas';
 import { BallTriangle } from "react-loader-spinner"
+import getMultas from '../../../api/multas';
 
 export const VerMultas = () => {
     const [isInputFocused, setIsInputFocused] = useState(false);
     const [numMulta, setNumMulta] = useState('');
-    const infracciones = useObtenerMultas()
     const [multas, setMultas] = useState([])
     const [loading, setLoading] = useState(true);
+    const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
 
     useEffect(() => {
-        setMultas(infracciones);
-        if (infracciones.length > 0) setLoading(false)
-    }, [infracciones]);
+
+        const fetchInfracciones = async () => {
+            try {
+
+                const multasData = await getMultas();
+                if (multasData.length === 0) setErrorCargaDeDatos('No hay datos')
+
+                setMultas(multasData);
+                setLoading(false);
+
+            } catch (error) {
+
+                console.error('Error al obtener multas:', error);
+                setLoading(false);
+                setErrorCargaDeDatos('Error al obtener datos');
+            }
+        }
+
+        fetchInfracciones()
+
+    }, []);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -60,6 +78,14 @@ export const VerMultas = () => {
 
                     </div>
 
+                )
+            }
+
+            {
+                errorCargaDeDatos && (
+                    <div className="mensajeError cargaDatosErro">
+                        <h3>{errorCargaDeDatos}</h3>
+                    </div>
                 )
             }
 

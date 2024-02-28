@@ -1,8 +1,8 @@
 const api = import.meta.env.VITE_APP_API;
 
-const url = `${api}/t-turismo`
+const url = `${api}/taxi-remis`
 
-const getTransporteTurismo = async () => {
+const getTaxiRemis = async () => {
 
     const token = localStorage.getItem('token');
 
@@ -18,4 +18,4 @@ const getTransporteTurismo = async () => {
     return resp
 }
 
-export default getTransporteTurismo
+export default getTaxiRemis

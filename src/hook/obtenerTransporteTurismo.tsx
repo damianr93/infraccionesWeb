@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import getTransporteTurismo from '../api/taxi-remis';
+import getTransporteTurismo from '../api/t-turismo';
+
 
 
 export const useObtenerTransporteTurismo = () => {

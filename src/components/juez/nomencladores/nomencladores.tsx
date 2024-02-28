@@ -1,30 +1,50 @@
 import { useEffect, useState } from 'react';
-import { useObtenerNomenclador } from '../../../hook/obtenerNomenclador';
 import { RenderNomenclador } from './render-nomencladores';
 import { RenderNomencladorPorNombre } from './render-nomenclador-por-nombre';
 import { CrearNomenclador } from './crear-nomenclador';
 import { BallTriangle } from "react-loader-spinner"
+import getNomenclador from '../../../api/nomenclador';
 
 export const VerNomencladores = () => {
-    const nomenclador = useObtenerNomenclador()
     const [isInputFocused, setIsInputFocused] = useState(false)
     const [isCreateNomenclador, setIsCreateNomenclador] = useState(false)
     const [nomencladorName, setNomencladorName] = useState('')
     const [nomencladorSelected, setNomencladorSelected] = useState({})
     const [nomencladores, setNomencladores] = useState([])
     const [loading, setLoading] = useState(true);
+    const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
 
     useEffect(() => {
 
-        setNomencladores(nomenclador)
-        if (nomenclador.length > 0) setLoading(false)
+        const fetchNomencladores = async () => {
+            try {
 
-    }, [nomenclador])
+                const fetchedNomencladores = await getNomenclador();
+
+                if (fetchedNomencladores.length === 0) setErrorCargaDeDatos('No hay datos') 
+
+                setNomencladores(fetchedNomencladores);
+
+                setLoading(false);
+
+            } catch (error) {
+
+                console.error('Error al obtenerNomenclador:', error);
+                setLoading(false);
+                setErrorCargaDeDatos('Error al obtener datos');
+
+            }
+        };
+
+        fetchNomencladores();
+
+    }, []);
+
 
     const handleKeyDown = (event) => {
         if (event.key !== 'Enter') return
         setIsInputFocused(true);
-        setNomencladorSelected(nomenclador.find(x => x.nombre === nomencladorName))
+        setNomencladorSelected(nomencladores.find(x => x.nombre === nomencladorName))
     };
 
     const handleSelectByName = (event) => {
@@ -39,6 +59,8 @@ export const VerNomencladores = () => {
 
     const onClickAddNomenclador = () => {
         setIsCreateNomenclador(true)
+        setErrorCargaDeDatos(null)
+        setLoading(null)
 
     }
 
@@ -47,6 +69,7 @@ export const VerNomencladores = () => {
         setNomencladores(nomencladores)
 
     }
+
 
     return (
         <>
@@ -84,6 +107,13 @@ export const VerNomencladores = () => {
                 )
             }
 
+            {
+                errorCargaDeDatos && (
+                    <div className="mensajeError cargaDatosErro">
+                        <h3>{errorCargaDeDatos}</h3>
+                    </div>
+                )
+            }
 
             {isCreateNomenclador ?
                 <CrearNomenclador
@@ -101,7 +131,7 @@ export const VerNomencladores = () => {
 
                 )
             }
-            
+
 
         </>
     );

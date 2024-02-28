@@ -1,28 +1,42 @@
 import { useEffect, useState } from "react";
-import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
 import { RenderUserPorNombre } from "./render-user-por-nombre";
 import { RenderUsers } from "./render-users";
 import { CrearUser } from "./crear-user";
 import { BallTriangle } from "react-loader-spinner";
+import getUsers from "../../../api/users";
 
 
 
 
 export const VerUsers = () => {
-    const usersInDB = useObtenerUsuarios()
     const [crearUser, setCrearUser] = useState(false)
     const [username, setUsername] = useState('')
     const [users, setUsers] = useState([])
     const [isInputFocused, setIsInputFocused] = useState(false)
     const [loading, setLoading] = useState(true);
+    const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
 
     useEffect(() => {
 
-        setUsers(usersInDB);
-        if (usersInDB.length > 0) setLoading(false)
+        const fetchUsers = async () => {
+            try {
 
+                const usersData = await getUsers();
+                if (usersData.length === 0) setErrorCargaDeDatos('No hay datos')
 
-    }, [usersInDB]);
+                setUsers(usersData);
+                setLoading(false);
+
+            } catch (error) {
+
+                console.error('Error al obtener multas:', error);
+                setLoading(false);
+                setErrorCargaDeDatos('Error al obtener datos');
+            }
+        }
+
+        fetchUsers()
+    }, []);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -80,6 +94,15 @@ export const VerUsers = () => {
 
                 )
             }
+
+            {
+                errorCargaDeDatos && (
+                    <div className="mensajeError cargaDatosErro">
+                        <h3>{errorCargaDeDatos}</h3>
+                    </div>
+                )
+            }
+
             {
                 crearUser ?
                     <CrearUser

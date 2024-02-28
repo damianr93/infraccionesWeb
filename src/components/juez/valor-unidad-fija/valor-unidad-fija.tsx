@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { useObtenerValorUnFija } from "../../../hook/obtenerValorUnFija"
 import patchValorUnFijo from '../../../api/editar-valor-un-fijo'
 import { BallTriangle } from "react-loader-spinner"
+import getValorUnidadFija from "../../../api/combustible"
 
 interface valorFijo {
   valor: number,
@@ -10,17 +10,34 @@ interface valorFijo {
 }
 
 export const ValorUnidadFija = () => {
-  const valorUn = useObtenerValorUnFija()
   const [valorUnFija, setValorUnFija] = useState<valorFijo>()
   const [newValue, setNewValue] = useState<number | undefined>()
   const [mensajeError, setMensajeError] = useState(null)
   const [mensajeExito, setMensajeExito] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
 
   useEffect(() => {
-    setValorUnFija(valorUn)
-    if (valorUn !== undefined) setLoading(false)
-  }, [valorUn])
+
+    const fetchValorUnFija = async () => {
+      try {
+
+        const valorUnFijaData = await getValorUnidadFija();
+        if (valorUnFijaData.length === undefined) setErrorCargaDeDatos('No hay datos')
+        if (valorUnFijaData !== undefined) setLoading(false)
+        setValorUnFija(valorUnFijaData[0]);
+
+      } catch (error) {
+
+        console.error('Error al obtener multas:', error);
+        setLoading(false);
+        setErrorCargaDeDatos('Error al obtener datos');
+      }
+    }
+
+    fetchValorUnFija()
+
+  }, [])
 
   const handleValue = (event) => {
     if (event.target.valor <= 0) return
@@ -31,7 +48,7 @@ export const ValorUnidadFija = () => {
   const onClickUpdateValue = async () => {
     if (newValue <= 0) return setMensajeError('Ingrese un valor mayor a 0')
     valorUnFija.valor = newValue
-    
+
     try {
 
       if (valorUnFija.valor <= 0) return setMensajeError('Ingrese un valor mayor a 0')
@@ -75,7 +92,7 @@ export const ValorUnidadFija = () => {
           <p>{mensajeError}</p>
         </div>
       }
-            {
+      {
         loading && (
           <div className="loaderInScreens">
             <BallTriangle
@@ -88,11 +105,17 @@ export const ValorUnidadFija = () => {
               wrapperClass=""
               visible={true}
             />
-
           </div>
-
         )
       }
+      {
+        errorCargaDeDatos && (
+          <div className="mensajeError cargaDatosErro">
+            <h3>{errorCargaDeDatos}</h3>
+          </div>
+        )
+      }
+
     </div>
   )
 }
