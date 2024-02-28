@@ -20,7 +20,7 @@ export const VerTurismo = () => {
 
       } catch (error) {
 
-        console.error('Error al obtener multas:', error);
+        console.error('Error al obtener turismo:', error);
         setLoading(false);
         setErrorCargaDeDatos('Error al obtener datos');
       }

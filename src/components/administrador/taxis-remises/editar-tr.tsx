@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import patchTaxiRemis from "../../../api/editar-taxi-remis"
-
+import { BallTriangle } from "react-loader-spinner"
 
 export const EditarTaxiRemis = () => {
     const location = useLocation()
     const sessionStorageId = location.state.id
+    const [loading, setLoading] = useState(false);
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
     const [values, setValues] = useState(() => {
@@ -126,17 +127,21 @@ export const EditarTaxiRemis = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        setMensajeError(null)
+        setLoading(true)
 
         try {
 
             await patchTaxiRemis(values.id, { ...values });
 
             setMensajeError(null)
+            setLoading(false)
             return setMensajeExito('Cambios guardados con exito!')
 
         } catch (error) {
             console.error('Error al enviar la solicitud PATCH:', error.message);
             setMensajeExito(null)
+            setLoading(false)
             return setMensajeError(error.message)
         }
     }
@@ -302,6 +307,25 @@ export const EditarTaxiRemis = () => {
                         <div className="mensajeExito">
                             <h3>{mensajeExito}</h3>
                         </div>
+                    }
+
+                    {
+                        loading && (
+                            <div className="loaderInScreens editSection">
+                                <BallTriangle
+                                    height={50}
+                                    width={50}
+                                    radius={5}
+                                    color="#4fa94d"
+                                    ariaLabel="ball-triangle-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+
+                            </div>
+
+                        )
                     }
 
                     {!mensajeExito && mensajeError &&

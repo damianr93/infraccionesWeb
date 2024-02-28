@@ -37,7 +37,7 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
 
             const numeroDecimal = parseFloat(userInput.replace(',', '.'))
 
-            if(numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
+            if (numeroDecimal <= 0) return setMensajeError('Ingrese un valor mayor a 0')
 
             const newNomenclador = await postNomencladores({
                 ...values,
@@ -76,16 +76,18 @@ export const CrearNomenclador = ({ cratingNomenclador, addNomenclador }) => {
                 <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
                 {
                     loading && (
-                        <BallTriangle
-                            height={50}
-                            width={50}
-                            radius={5}
-                            color="#4fa94d"
-                            ariaLabel="ball-triangle-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                        <div className="loaderInScreens editSection">
+                            <BallTriangle
+                                height={50}
+                                width={50}
+                                radius={5}
+                                color="#4fa94d"
+                                ariaLabel="ball-triangle-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        </div>
                     )
                 }
 

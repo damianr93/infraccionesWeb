@@ -1,9 +1,11 @@
 import { useState } from "react"
 import crearTaxiRemis from "../../../api/crear-taxi-remis"
+import { BallTriangle } from "react-loader-spinner"
 
 
 export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
   const [mensajeError, setMensajeError] = useState('')
+  const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({
     numero_legajo: '',
     dominio_vehiculo: '',
@@ -126,15 +128,19 @@ export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    setMensajeError(null)
+    setLoading(true)
 
     try {
       const newTaxiRemis = await crearTaxiRemis({ ...values });
       addTaxiRemis(newTaxiRemis)
       cratingTR(false)
       setMensajeError(null)
+      setLoading(false)
 
     } catch (error) {
       console.error('Error al enviar la solicitud PATCH:', error.message);
+      setLoading(false)
       return setMensajeError(error.message)
     }
   }
@@ -292,6 +298,25 @@ export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
         </div>
 
         <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
+
+        {
+          loading && (
+            <div className="loaderInScreens editSection">
+              <BallTriangle
+                height={50}
+                width={50}
+                radius={5}
+                color="#4fa94d"
+                ariaLabel="ball-triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+
+            </div>
+
+          )
+        }
 
         {mensajeError &&
           <div className="mensajeError">

@@ -102,17 +102,20 @@ export const EditarNomenclador = () => {
                     Volver
                 </button>
                 {
+
                     loading && (
-                        <BallTriangle
-                            height={50}
-                            width={50}
-                            radius={5}
-                            color="#4fa94d"
-                            ariaLabel="ball-triangle-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                        <div className="loaderInScreens editSection">
+                            <BallTriangle
+                                height={50}
+                                width={50}
+                                radius={5}
+                                color="#4fa94d"
+                                ariaLabel="ball-triangle-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        </div>
                     )
                 }
 

@@ -284,8 +284,10 @@ select {
 .mensajeError {
     background-color: #ed1717d6;
     width: 250px;
+    max-height: 100px;
     border-radius: 5px;
     padding: 5px;
+    overflow: auto;
 }
 
 .mensajeError h3 {
@@ -421,4 +423,8 @@ select {
 
 .cargaDatosErro {
     margin: auto;
+}
+
+.editSection {
+    width: 250px;
 }

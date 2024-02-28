@@ -116,7 +116,8 @@ export const CrearUser = ({ addUser, cratingUser }) => {
 
                     {
                         loading && (
-                            <div className="loaderInScreens">
+                            
+                            <div className="loaderInScreens editSection">
                                 <BallTriangle
                                     height={50}
                                     width={50}

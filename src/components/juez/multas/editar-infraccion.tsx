@@ -337,7 +337,7 @@ export const EditarInfraccion = () => {
                     </button>
                     {
                         loading && (
-                            <div className="loaderInScreens">
+                            <div className="loaderInScreens editSection">
                                 <BallTriangle
                                     height={50}
                                     width={50}
@@ -348,7 +348,6 @@ export const EditarInfraccion = () => {
                                     wrapperClass=""
                                     visible={true}
                                 />
-
                             </div>
 
                         )

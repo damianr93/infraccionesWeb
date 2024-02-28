@@ -1,19 +1,37 @@
 import { useEffect, useState } from "react";
-import { useObtenerTaxiRemis } from "../../../hook/obtenerTaxiRemis";
 import { CrearTaxiRemis } from "./crear-tr";
 import { RenderTaxiRemisPorLegajo } from "./render-tr-por-numero-de-legajo";
 import { RenderTaxiRemis } from "./render-tr";
+import { BallTriangle } from "react-loader-spinner"
+import getTaxiRemis from "../../../api/taxi-remis";
 
 export const VerTaxiRemis = () => {
-  const taxisRemisDB = useObtenerTaxiRemis();
   const [crearTaxiRemis, setCrearTaxiRemis] = useState(false)
   const [legajoNum, setLegajoNum] = useState('')
   const [taxiRemis, setTaxiRemis] = useState([])
   const [isInputFocused, setIsInputFocused] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
 
   useEffect(() => {
-    setTaxiRemis(taxisRemisDB);
-  }, [taxisRemisDB]);
+    const fetchTaxiRemis = async () => {
+      try {
+
+        const taxiRemisData = await getTaxiRemis();
+        if (taxiRemisData.length === 0) setErrorCargaDeDatos('No hay datos')
+        setTaxiRemis(taxiRemisData);
+        setLoading(false);
+
+      } catch (error) {
+
+        console.error('Error al obtener transportes:', error);
+        setLoading(false);
+        setErrorCargaDeDatos('Error al obtener datos');
+      }
+    }
+
+    fetchTaxiRemis()
+  }, []);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -28,11 +46,13 @@ export const VerTaxiRemis = () => {
 
   const onCreateTaxiRemis = () => {
     setCrearTaxiRemis(true)
+    setErrorCargaDeDatos(null)
   }
 
   const handleAddTaxiRemis = (taxiRem) => {
     taxiRemis.push(taxiRem)
     setTaxiRemis(taxiRemis)
+
   }
 
   const onDeleteTaxiRemis = (id) => {
@@ -54,6 +74,32 @@ export const VerTaxiRemis = () => {
       }
       <button onClick={() => onCreateTaxiRemis()}>Dar de alta nuevo Taxi/Remis</button>
 
+      {
+        loading && (
+          <div className="loaderInScreens">
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+
+          </div>
+
+        )
+      }
+
+      {
+        errorCargaDeDatos && (
+          <div className="mensajeError cargaDatosErro">
+            <h3>{errorCargaDeDatos}</h3>
+          </div>
+        )
+      }
 
       {
         crearTaxiRemis ?
