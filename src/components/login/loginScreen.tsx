@@ -32,6 +32,10 @@ function LoginScreen() {
         return setError('Email o contraseña no son correctas');
       }
 
+      const id = sessionStorage.getItem('userId')
+      if(id) sessionStorage.removeItem('userId')
+      sessionStorage.setItem('userId', user.user.id)
+
       const token = localStorage.getItem('token')
       if (token) localStorage.removeItem('token')
       localStorage.setItem('token', user.token);
@@ -44,7 +48,9 @@ function LoginScreen() {
         case 'Administrador':
           navigate('/admin', { replace: true })
           break;
-
+        case 'Turismo':
+          navigate('/turismo', { replace: true })
+          break;
       }
 
     } catch (error) {

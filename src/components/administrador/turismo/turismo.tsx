@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { RenderTranspTurismo } from "./render-transp-turismo"
 import { BallTriangle } from "react-loader-spinner"
-import getTransporteTurismo from "../../../api/t-turismo"
+import { getTransporteTurismo } from "../../../api/t-turismo"
+
+
 
 
 export const VerTurismo = () => {
@@ -61,6 +63,7 @@ export const VerTurismo = () => {
       }
 
       <RenderTranspTurismo
+        setTransporteTurism={setTranspTurismo}
         transpTurismo={transpTurismo}
       />
     </>

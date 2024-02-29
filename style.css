@@ -22,6 +22,14 @@ body {
     text-align: center;
 }
 
+ul {
+    list-style: none;
+}
+
+.TitleH1White {
+    color: white;
+}
+
 .logoContainer {
     align-self: flex-start;
     display: flex;
@@ -55,24 +63,33 @@ body {
     padding: 25px;
     border-radius: 10px;
     max-width: 600px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Añade sombra para resaltar el contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Añade sombra para resaltar el contenedor */
 }
 
 .login-container input {
-    color: #333; /* Texto más oscuro */
+    color: #333;
+    /* Texto más oscuro */
     padding: 10px;
-    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    width: 100%;
+    /* Ajusta el ancho al 100% del contenedor */
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo más claro */
-    margin-bottom: 15px; /* Añade un margen inferior para separar los inputs */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fondo más claro */
+    margin-bottom: 15px;
+    /* Añade un margen inferior para separar los inputs */
 }
 
 .login-container h1 {
-    color: #ffffff; /* Texto negro para resaltarlo */
-    font-size: 36px; /* Tamaño del texto aumentado */
-    font-weight: bold; /* Hace que el texto sea más intenso */
+    color: #ffffff;
+    /* Texto negro para resaltarlo */
+    font-size: 36px;
+    /* Tamaño del texto aumentado */
+    font-weight: bold;
+    /* Hace que el texto sea más intenso */
     margin: 15px auto;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Texto con sombra más pronunciada */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    /* Texto con sombra más pronunciada */
 }
 
 button {
@@ -352,6 +369,7 @@ select {
     align-items: center;
     flex-direction: column;
 }
+
 .ciudadanoH1 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
@@ -360,6 +378,7 @@ select {
     top: 0;
     margin-top: 25px;
 }
+
 .ciudadanoH2 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
@@ -369,6 +388,7 @@ select {
     margin-top: 70px;
     padding: 10px;
 }
+
 .ciudadanoH3 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
@@ -376,6 +396,7 @@ select {
     margin-top: 120px;
     padding: 10px;
 }
+
 .ciudadanoInput {
     padding: 10px;
     border-radius: 5px;
@@ -385,6 +406,7 @@ select {
     top: 0;
     margin-top: 150px;
 }
+
 .ciudadanoButton {
     padding: 10px 20px;
     background-color: #000000;
@@ -398,6 +420,7 @@ select {
     top: 0;
     margin-top: 250px;
 }
+
 .ciudadanoRenderMultas {
     background-color: #1b1e1b73;
     margin: 15px;
@@ -428,3 +451,41 @@ select {
 .editSection {
     width: 250px;
 }
+
+.editCreateTextArea {
+    resize: none;
+    width: 250px;
+    height: 100px;
+}
+
+.resaltarInfo {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.resaltarInfo2 {
+    font-weight: bold;
+    color: #0400ff;
+}
+
+.SolicitudARevisar {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 10px;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.observacionSolicitud {
+    border: #000000 solid 1px;
+    border-radius: 15px;
+    background-color: white;
+    margin: 10px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+

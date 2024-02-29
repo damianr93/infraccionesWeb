@@ -149,7 +149,7 @@ export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
 
   return (
     <div className="editing">
-      <h1>Editando transporte N° {values.numero_legajo}</h1>
+      <h1>Crear transporte N° {values.numero_legajo}</h1>
       <form onSubmit={(event) => onSubmit(event)}>
         <div>
           <label>Numero de legajo:</label>
