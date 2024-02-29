@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getTransporteTurismo from '../api/t-turismo';
+import { getTransporteTurismo } from '../api/t-turismo';
 
 
 
