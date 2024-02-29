@@ -1,6 +1,5 @@
 import { useState } from "react";
 import patchTurismoAdmin from "../../../api/editar-solicitud-estado-obs";
-import moment from "moment";
 
 export const RenderTranspTurismo = ({ transpTurismo, setTransporteTurism }) => {
     const [observandoSolicitudIndex, setObservandoSolicitudIndex] = useState(null);
