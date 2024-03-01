@@ -10,6 +10,7 @@ export const VerTurismo = () => {
   const [transpTurismo, setTranspTurismo] = useState([])
   const [loading, setLoading] = useState(true);
   const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
+  const [filtro, setFiltro] = useState('')
 
   useEffect(() => {
     const fetchTurismo = async () => {
@@ -32,8 +33,25 @@ export const VerTurismo = () => {
 
   }, [])
 
+
+  const handleFiltro = (event) => {
+    setFiltro(event.target.value)
+  }
+
+
   return (
     <>
+      <h1 className="TitleH1White">Solicitudes:</h1>
+      <select
+      value={filtro}
+      onChange={handleFiltro}
+      >
+        <option value="">Filtrar por:</option>
+        <option value="Pendiente Revision">Pendientes de Revisión</option>
+        <option value="Solicitud Aprobada">Aprobados</option>
+        <option value="Observado">Observados</option>
+      </select>
+
 
       {
         loading && (
@@ -65,6 +83,7 @@ export const VerTurismo = () => {
       <RenderTranspTurismo
         setTransporteTurism={setTranspTurismo}
         transpTurismo={transpTurismo}
+        filtro={filtro}
       />
     </>
   )
