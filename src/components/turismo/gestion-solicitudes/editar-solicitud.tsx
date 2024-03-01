@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BallTriangle } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 import patchTurismo from "../../../api/editar-solicitud";
-import moment from "moment";
 
 
 export const EditarSolicitud = () => {
