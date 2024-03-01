@@ -55,6 +55,7 @@ export const GestionSolicitudes = () => {
 
     return (
         <>
+        <h1 className="h1whiteStandar">Gestion de Solicitudes</h1>
             <div>
                 {/* {
                     solicitudes.length > 0 && <input

@@ -8,6 +8,7 @@ import { EditarTransporte } from "../components/administrador/transportes/editar
 import { EditarTaxiRemis } from "../components/administrador/taxis-remises/editar-tr"
 import { CiudadanoScreen } from "../components/usuarios-ciudadano/ciudadanoScreen"
 import { TurismoScreen } from "../components/turismo/turismoScreen"
+import { EditarSolicitud } from "../components/turismo/gestion-solicitudes/editar-solicitud"
 
 
 export const AppRouter = () => {
@@ -24,6 +25,7 @@ export const AppRouter = () => {
         <Route path="edition-nomenclador" element={<EditarNomenclador/>} />
         <Route path="edition-transporte" element={<EditarTransporte/>} />
         <Route path="edition-taxi-remis" element={<EditarTaxiRemis/>} />
+        <Route path="edition-solicitud" element={<EditarSolicitud/>} />
 
 
         <Route path="/" element={<Navigate to="login"/>} />

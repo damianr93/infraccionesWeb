@@ -3,9 +3,6 @@ import { RenderTranspTurismo } from "./render-transp-turismo"
 import { BallTriangle } from "react-loader-spinner"
 import { getTransporteTurismo } from "../../../api/t-turismo"
 
-
-
-
 export const VerTurismo = () => {
   const [transpTurismo, setTranspTurismo] = useState([])
   const [loading, setLoading] = useState(true);
@@ -37,6 +34,11 @@ export const VerTurismo = () => {
   const handleFiltro = (event) => {
     setFiltro(event.target.value)
   }
+
+  const handleDeleteSolicitud = (id) => {
+    const solicitudesNotDeleted = transpTurismo.filter(solicitud => id !== solicitud.id)
+    setTranspTurismo(solicitudesNotDeleted)
+}
 
 
   return (
@@ -84,6 +86,7 @@ export const VerTurismo = () => {
         setTransporteTurism={setTranspTurismo}
         transpTurismo={transpTurismo}
         filtro={filtro}
+        onDeleteSolicitud={handleDeleteSolicitud}
       />
     </>
   )

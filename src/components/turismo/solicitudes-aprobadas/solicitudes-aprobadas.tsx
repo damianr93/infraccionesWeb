@@ -37,6 +37,7 @@ export const SolicitudesAprobadas = () => {
 
   return (
     <>
+      <h1 className="h1whiteStandar">Solicitudes aprobadas</h1>
       {
         loading && (
           <div className="loaderInScreens">
@@ -64,38 +65,49 @@ export const SolicitudesAprobadas = () => {
         )
       }
 
-
       {
         solicitudes
-        .filter(solicitud => solicitud.estado === "Solicitud Aprobada")
-        .map((solicitud, index) => (
-          <div key={index} className='multas'>
+          .filter(solicitud => solicitud.estado === "Solicitud Aprobada")
+          .map((solicitud, index) => (
+            <div key={index} className='solicitudContainer'>
+              <div className="infoGral">
+                <h3>Informacion General:</h3>
+                <ul>
+                  <li><b>Nombre empresa:</b> {solicitud.nombre_empresa}</li>
+                  <li><b>Marca del vehículo:</b> {solicitud.nombremarca_vehiculo_empresa}</li>
+                  <li><b>Domínio:</b> {solicitud.dominio_vehiculo}</li>
+                  <li><b>Conductor/es:</b> {solicitud.nombre_conductores}</li>
+                  <li><b>Informacion adicional:</b> {solicitud.otra_informacion}</li>
+                </ul>
+              </div>
+              <div className="estado">
+              <h3>Estado:</h3>
+                <ul>
+                  <li><b>Estado: </b><span className={
+                    solicitud.estado === "Pendiente Revision" ? "" :
+                      solicitud.estado === "Observado" ? "resaltarInfo" :
+                        "resaltarInfo2"
+                  }>{solicitud.estado}</span></li>
+                  {
+                    solicitud.observaciones &&
+                    <li><b>Observacion: </b>{solicitud.observaciones}</li>
+                  }
+                </ul>
 
-            <ul id={solicitud.id} >
-              <li>Nombre empresa : {solicitud.nombre_empresa}</li>
-              <li>Marca del vehículo: {solicitud.nombremarca_vehiculo_empresa}</li>
-              <li>Domínio: {solicitud.dominio_vehiculo}</li>
-              <li>Conductor/es: {solicitud.nombre_conductores}</li>
-              <li>Fecha de ingreso: {solicitud.fecha_hora_ingreso}</li>
-              <li>Fecha de egreso: {solicitud.fecha_hora_egreso}</li>
-              <li>Ruta de ingreso: {solicitud.ruta_ingreso}</li>
-              <li>Ruta de egreso: {solicitud.ruta_egreso}</li>
-              <li>Informacion adicional: {solicitud.otra_informacion}</li>
-              <li >Estado: <span className={
-                solicitud.estado === "Pendiente Revision" ? "" :
-                  solicitud.estado === "Observado" ? "resaltarInfo" :
-                    "resaltarInfo2"
-              }>{solicitud.estado}</span></li>
-              {
-                solicitud.observaciones &&
-                <li>Observacion: {solicitud.observaciones}</li>
-              }
-            </ul>
-            <div className='buttonsCrud'>
+              </div>
+              <div className="rutaFecha">
+                <h3>Ruta y fecha:</h3>
+                <ul>
+                  <li><b>Fecha de ingreso: </b>{solicitud.fecha_hora_ingreso}</li>
+                  <li><b>Fecha de egreso: </b>{solicitud.fecha_hora_egreso}</li>
+                  <li><b>Ruta de ingreso: </b>{solicitud.ruta_ingreso}</li>
+                  <li><b>Ruta de egreso: </b>{solicitud.ruta_egreso}</li>
+                </ul>
+
+              </div>
+              <div className="buttons"></div>
             </div>
-
-          </div>
-        ))
+          ))
       }
     </>
 

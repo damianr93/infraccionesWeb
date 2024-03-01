@@ -68,7 +68,7 @@ ul {
     /* Añade sombra para resaltar el contenedor */
 }
 
-.login-container input {    
+.login-container input {
     color: #333;
     /* Texto más oscuro */
     padding: 10px;
@@ -141,6 +141,10 @@ button:active {
 }
 
 .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
     background-color: #1b1e1b73;
     margin: 15px;
     width: 70%;
@@ -380,6 +384,11 @@ select {
     margin-top: 25px;
 }
 
+.h1whiteStandar {
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
+}
+
 .ciudadanoH2 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
@@ -455,7 +464,8 @@ select {
 
 .editCreateTextArea {
     resize: none;
-    width: 250px;
+    padding: 15px;
+    width: 500px;
     height: 100px;
 }
 
@@ -484,9 +494,77 @@ select {
     border: #000000 solid 1px;
     border-radius: 15px;
     background-color: white;
+    border-radius: 10px;
+    width: 95%;
     margin: 10px auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
 }
 
+.solicitudContainer {
+    width: 75%;
+    max-height: 650px;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.838);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: 1fr 1.5fr 0.5fr;
+    gap: 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "infoGral infoGral estado"
+        "infoGral infoGral rutaFecha"
+        "observacionSolicitud observacionSolicitud observacionSolicitud"
+        "buttons buttons buttons";
+}
+
+.solicitudContainer h3 {
+    margin: 15px;
+}
+
+.infoGral {
+    grid-area: infoGral;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(245, 222, 179, 0.096);
+}
+
+.estado {
+    grid-area: estado;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+
+}
+
+.rutaFecha {
+    padding: 15px;
+    grid-area: rutaFecha;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+}
+
+.observacionSolicitud{
+    grid-area: observacionSolicitud;
+    background-color: rgba(245, 222, 179, 0.096);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    grid-area: buttons;
+}
