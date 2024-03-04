@@ -10,6 +10,7 @@ export const EditarInfraccion = () => {
     const nomenclador = useObtenerNomenclador()
     const users = useObtenerUsuarios()
     const sessionStorageId = location.state.id
+    const [selectedImage, setSelectedImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
@@ -145,6 +146,25 @@ export const EditarInfraccion = () => {
         }))
     }
 
+    const handleFoto = (foto) => {
+        event.preventDefault()
+        values.foto = values.foto.filter(photo => photo !== foto)
+        setValues(prevValues => ({
+            ...prevValues,
+            fotos: values.foto
+        }))
+    }
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Lee el archivo como un objeto de datos URL
+            const imageUrl = URL.createObjectURL(file);
+            setSelectedImage(imageUrl);
+        }
+    };
+
     const onSubmit = async (event) => {
         event.preventDefault();
         setMensajeError(null)
@@ -174,159 +194,232 @@ export const EditarInfraccion = () => {
 
     const handleButtonVolver = () => {
         window.history.back()
+        sessionStorage.removeItem(`editValues-${sessionStorageId}`)
     }
 
     return (
         <div className="editing">
             <h1>Editando infracción N° {values.numero_infraccion}</h1>
             <form onSubmit={(event) => onSubmit(event)}>
-                <div>
-                    <label>Dominio:</label>
-                    <input
-                        type="text"
-                        value={values.dominio}
-                        onChange={handleDominio}
-                    />
-                </div>
-                <div>
-                    <label>Nombre del propietario:</label>
-                    <input
-                        type="text"
-                        value={values.nombre_propietario}
-                        onChange={handlePropName}
-                    />
-                </div>
-                <div>
-                    <label>Nombre del conductor:</label>
-                    <input
-                        type="text"
-                        value={values.nombre_conductor}
-                        onChange={handleDriverName}
-                    />
-                </div>
-                <div>
-                    <label>Domicilio del conductor:</label>
-                    <input
-                        type="text"
-                        value={values.domicilio_conductor}
-                        onChange={handleAdressDriver}
-                    />
-                </div>
-                <div>
-                    <label>Marca del vehículo:</label>
-                    <input
-                        type="text"
-                        value={values.marca_vehiculo}
-                        onChange={handleMarcaVehiculo}
-                    />
-                </div>
-                <div>
-                    <label>Modelo del vehículo:</label>
-                    <input
-                        type="text"
-                        value={values.modelo_vehiculo}
-                        onChange={handleCarModel}
-                    />
-                </div>
-                <div>
-                    <label>Color del vehículo:</label>
-                    <input
-                        type="text"
-                        value={values.color_vehiculo}
-                        onChange={handleCarColor}
-                    />
-                </div>
-                <div>
-                    <label>Número de licencia del conductor:</label>
-                    <input
-                        type="text"
-                        value={values.numero_licencia_conductor}
-                        onChange={handleLicNumber}
-                    />
-                </div>
-                <div>
-                    <label>Ubicación de la infracción:</label>
-                    <input
-                        type="text"
-                        value={values.ubicacion_infraccion}
-                        onChange={handleLocationInfraction}
-                    />
-                </div>
-                <div>
-                    <label>Referencia de ubicación:</label>
-                    <input
-                        type="text"
-                        value={values.referencia_ubicacion}
-                        onChange={handleLocationRef}
-                    />
-                </div>
-                <div>
-                    <label>Nomenclador:</label>
-                    <select
-                        value={values.nomenclador}
-                        onChange={handleSeleccionarInfraccion} /* Revisar Warning */
-                    >
-                        <option value="">Seleccione una opción</option>
-                        {nomenclador.map(infraccion => {
-                            return (
-                                <option key={infraccion.id} value={infraccion.id}>
-                                    {infraccion.nombre}
-                                </option>
-                            );
-                        })}
-                    </select>
+                <div className="formEditInputs">
+                    <div>
+                        <label>Dominio:</label>
+                        <input
+                            type="text"
+                            value={values.dominio}
+                            onChange={handleDominio}
+                        />
+                    </div>
+                    <div>
+                        <label>Nombre del propietario:</label>
+                        <input
+                            type="text"
+                            value={values.nombre_propietario}
+                            onChange={handlePropName}
+                        />
+                    </div>
+                    <div>
+                        <label>Nombre del conductor:</label>
+                        <input
+                            type="text"
+                            value={values.nombre_conductor}
+                            onChange={handleDriverName}
+                        />
+                    </div>
+                    <div>
+                        <label>Domicilio del conductor:</label>
+                        <input
+                            type="text"
+                            value={values.domicilio_conductor}
+                            onChange={handleAdressDriver}
+                        />
+                    </div>
+                    <div>
+                        <label>Marca del vehículo:</label>
+                        <input
+                            type="text"
+                            value={values.marca_vehiculo}
+                            onChange={handleMarcaVehiculo}
+                        />
+                    </div>
+                    <div>
+                        <label>Modelo del vehículo:</label>
+                        <input
+                            type="text"
+                            value={values.modelo_vehiculo}
+                            onChange={handleCarModel}
+                        />
+                    </div>
+                    <div>
+                        <label>Color del vehículo:</label>
+                        <input
+                            type="text"
+                            value={values.color_vehiculo}
+                            onChange={handleCarColor}
+                        />
+                    </div>
+                    <div>
+                        <label>Número de licencia del conductor:</label>
+                        <input
+                            type="text"
+                            value={values.numero_licencia_conductor}
+                            onChange={handleLicNumber}
+                        />
+                    </div>
+                    <div>
+                        <label>Ubicación de la infracción:</label>
+                        <input
+                            type="text"
+                            value={values.ubicacion_infraccion}
+                            onChange={handleLocationInfraction}
+                        />
+                    </div>
+                    <div>
+                        <label>Referencia de ubicación:</label>
+                        <input
+                            type="text"
+                            value={values.referencia_ubicacion}
+                            onChange={handleLocationRef}
+                        />
+                    </div>
+                    <div>
+                        <label>Nomenclador:</label>
+                        <select
+                            value={values.nomenclador}
+                            onChange={handleSeleccionarInfraccion} /* Revisar Warning */
+                        >
+                            <option value="">Seleccione una opción</option>
+                            {nomenclador.map(infraccion => {
+                                return (
+                                    <option key={infraccion.id} value={infraccion.id}>
+                                        {infraccion.nombre}
+                                    </option>
+                                );
+                            })}
+                        </select>
 
-                    {infracciones.length > 0 && (
-                        infracciones.map(infraccion => {
-                            return (
-                                <div className="nomencladorDiv" key={infraccion.id}>
-                                    <p>{infraccion.nombre}</p>
-                                    <button onClick={() => handleQuitarInfracion(infraccion.id)}>Quitar</button>
-                                </div>
-                            );
-                        })
-                    )}
-                </div>
-                <div>
-                    <label>Número de infracción:</label>
-                    <input
-                        type="text"
-                        value={values.numero_infraccion}
-                        onChange={handleInfractionNum}
-                    />
-                </div>
-                <div>
-                    <label>Estado:</label>
-                    <select
-                        value={values.estado}
-                        onChange={handleSeleccionarEstado}
-                    >
-                        <option value="PAGADO">PAGADO</option>
-                        <option value="PENDIENTE">PENDIENTE</option>
-                        <option value="NULO">NULO</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Juez asignado:</label>
-                    <select
-                        onChange={handleJuez}
-                    >
-                        <option>Seleccione una opción</option>
-                        {jueces.map(juez => {
-                            return (
-                                <option
-                                    key={juez.id}
-                                    value={juez.id}
-                                >
-                                    {juez.name}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </div>
+                        {infracciones.length > 0 && (
+                            infracciones.map(infraccion => {
+                                return (
+                                    <div className="nomencladorDiv" key={infraccion.id}>
+                                        <p>{infraccion.nombre}</p>
+                                        <button onClick={() => handleQuitarInfracion(infraccion.id)}>Quitar</button>
+                                    </div>
+                                );
+                            })
+                        )}
+                    </div>
+                    <div>
+                        <label>Número de infracción:</label>
+                        <input
+                            type="text"
+                            value={values.numero_infraccion}
+                            onChange={handleInfractionNum}
+                        />
+                    </div>
+                    <div>
+                        <label>Estado:</label>
+                        <select
+                            value={values.estado}
+                            onChange={handleSeleccionarEstado}
+                        >
+                            <option value="PAGADO">PAGADO</option>
+                            <option value="PENDIENTE">PENDIENTE</option>
+                            <option value="NULO">NULO</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Juez asignado:</label>
+                        <select
+                            onChange={handleJuez}
+                        >
+                            <option>Seleccione una opción</option>
+                            {jueces.map(juez => {
+                                return (
+                                    <option
+                                        key={juez.id}
+                                        value={juez.id}
+                                    >
+                                        {juez.name}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+                    <div className="fotosEditing">
+                        {(values.foto.length > 0) &&
+                            <ul>
+                                <li>Foto/s:</li>
+                                {values.foto.map((foto, id) => (
+                                    <div key={id}>
+                                        <a
+                                            href={foto}
+                                            target="blank">
+                                            <img
+                                                className="imgPrueba"
+                                                src={foto}
+                                                alt={foto} />
+                                            <button
+                                                className="eliminarImage"
+                                                onClick={() => handleFoto(foto)}
+                                            >eliminar
+                                            </button>
+                                        </a>
+                                        {selectedImage && (
+                                            <a>
+                                                <img className="imgPrueba" src={selectedImage} alt="Preview" />
+                                            </a>
+                                        )}
+                                    </div>
+                                ))}
+                            </ul>
+                        }
+
+                    </div>
+                    <div className="selectImage">
+                        <label
+                            id="file-input-label"
+                            htmlFor="file-input"
+                        >Select a File</label>
+                        <input
+                            type="file"
+                            id="file-input"
+                            name="file-input"
+                            onChange={handleImageChange} />
 
 
-                <div>
+                    </div>
+                </div>
+                {
+                    loading && (
+                        <div className="loaderInScreens editSection">
+                            <BallTriangle
+                                height={50}
+                                width={50}
+                                radius={5}
+                                color="#4fa94d"
+                                ariaLabel="ball-triangle-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        </div>
+
+                    )
+                }
+
+                {mensajeExito && !mensajeError &&
+                    <div className="mensajeExito">
+                        <h3>{mensajeExito}</h3>
+                    </div>
+                }
+
+                {!mensajeExito && mensajeError &&
+                    <div className="mensajeError">
+                        <h3>{mensajeError}</h3>
+                    </div>
+                }
+                <div className="buttonsEditing">
                     <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
                     <button
                         className="buttonEditarInfraccion"
@@ -335,35 +428,7 @@ export const EditarInfraccion = () => {
                     >
                         Volver
                     </button>
-                    {
-                        loading && (
-                            <div className="loaderInScreens editSection">
-                                <BallTriangle
-                                    height={50}
-                                    width={50}
-                                    radius={5}
-                                    color="#4fa94d"
-                                    ariaLabel="ball-triangle-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                />
-                            </div>
 
-                        )
-                    }
-
-                    {mensajeExito && !mensajeError &&
-                        <div className="mensajeExito">
-                            <h3>{mensajeExito}</h3>
-                        </div>
-                    }
-
-                    {!mensajeExito && mensajeError &&
-                        <div className="mensajeError">
-                            <h3>{mensajeError}</h3>
-                        </div>
-                    }
                 </div>
 
 

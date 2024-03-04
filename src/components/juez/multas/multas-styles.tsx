@@ -6,13 +6,15 @@ const MultaCard = styled.div`
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    height: 75px;
+    overflow: hidden;   
+    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
 
     &:hover {
         transform: scale(1.05);
+        height: 750px;
     }
 `;
 
