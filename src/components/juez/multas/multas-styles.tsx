@@ -15,6 +15,7 @@ const MultaCard = styled.div`
     &:hover {
         transform: scale(1.05);
         height: 750px;
+        overflow: auto;
     }
 `;
 

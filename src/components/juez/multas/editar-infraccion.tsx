@@ -4,13 +4,15 @@ import { useObtenerNomenclador } from "../../../hook/obtenerNomenclador";
 import { useObtenerUsuarios } from "../../../hook/obtenerUsers";
 import patchMultas from "../../../api/editar-multa"
 import { BallTriangle } from "react-loader-spinner"
+import { uploadImagesToS3 } from "../../../api/aws";
 
 export const EditarInfraccion = () => {
     const location = useLocation();
     const nomenclador = useObtenerNomenclador()
     const users = useObtenerUsuarios()
     const sessionStorageId = location.state.id
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [imagesToUpload, setImagesToUpload] = useState([])
+    const [selectedImages, setSelectedImages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [mensajeExito, setMensajeExito] = useState(null)
     const [mensajeError, setMensajeError] = useState(null)
@@ -53,7 +55,6 @@ export const EditarInfraccion = () => {
     }
 
     const handleJuez = (event) => {
-
         setValues(prevValues => ({
             ...prevValues,
             juez_asignado: event.target.value
@@ -147,22 +148,29 @@ export const EditarInfraccion = () => {
     }
 
     const handleFoto = (foto) => {
-        event.preventDefault()
-        values.foto = values.foto.filter(photo => photo !== foto)
         setValues(prevValues => ({
             ...prevValues,
-            fotos: values.foto
-        }))
+            fotos: prevValues.fotos.filter(photo => photo !== foto)
+        }));
     }
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
+    // const handleFoto = (foto) => {
+    //     event.preventDefault()
+    //     values.foto = values.foto.filter(photo => photo !== foto)
+    //     setValues(prevValues => ({
+    //         ...prevValues,
+    //         fotos: values.foto
+    //     }))
+    // }
 
-        if (file) {
-            // Lee el archivo como un objeto de datos URL
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
-        }
+    const handleImageChange = async (event) => {
+        const selectedFile = event.target.files[0];
+
+        const imageUrl = URL.createObjectURL(selectedFile);
+        setSelectedImages((prevImages) => [...prevImages, imageUrl]);
+        imagesToUpload.push(selectedFile)
+        setImagesToUpload(imagesToUpload)
+
     };
 
     const onSubmit = async (event) => {
@@ -172,16 +180,22 @@ export const EditarInfraccion = () => {
         setLoading(true)
 
         const id_nomencladoresNuevos = values.id_nomenclador.map(nomenclador => nomenclador.id);
+
         try {
+
+            const uploadedPhotos = await uploadImagesToS3(imagesToUpload)
+            values.foto.push(...uploadedPhotos)
+            setValues(values)
 
             await patchMultas(values.id, {
                 ...values,
                 juez_asignado: values.juez_asignado,
-                id_nomenclador: id_nomencladoresNuevos
+                id_nomenclador: id_nomencladoresNuevos,
             });
 
             setMensajeError(null)
             setLoading(false)
+            setSelectedImages([])
             return setMensajeExito('Cambios guardados con exito!')
 
         } catch (error) {
@@ -365,13 +379,17 @@ export const EditarInfraccion = () => {
                                             >eliminar
                                             </button>
                                         </a>
-                                        {selectedImage && (
-                                            <a>
-                                                <img className="imgPrueba" src={selectedImage} alt="Preview" />
-                                            </a>
-                                        )}
                                     </div>
                                 ))}
+
+                                {
+                                    selectedImages && selectedImages.map((foto, id) => (
+                                        <a key={id}>
+                                            <img className="imgPrueba" src={foto} alt="Preview" />
+                                        </a>
+                                    ))
+                                }
+
                             </ul>
                         }
 
@@ -386,8 +404,6 @@ export const EditarInfraccion = () => {
                             id="file-input"
                             name="file-input"
                             onChange={handleImageChange} />
-
-
                     </div>
                 </div>
                 {

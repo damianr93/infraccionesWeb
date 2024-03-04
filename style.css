@@ -375,6 +375,7 @@ select {
     max-height: 100px;
     border-radius: 5px;
     padding: 5px;
+    min-height: 45px;
     overflow: auto;
 }
 
