@@ -148,20 +148,13 @@ export const EditarInfraccion = () => {
     }
 
     const handleFoto = (foto) => {
+        event.preventDefault()
+        values.foto = values.foto.filter(photo => photo !== foto)
         setValues(prevValues => ({
             ...prevValues,
-            fotos: prevValues.fotos.filter(photo => photo !== foto)
-        }));
+            fotos: values.foto
+        }))
     }
-
-    // const handleFoto = (foto) => {
-    //     event.preventDefault()
-    //     values.foto = values.foto.filter(photo => photo !== foto)
-    //     setValues(prevValues => ({
-    //         ...prevValues,
-    //         fotos: values.foto
-    //     }))
-    // }
 
     const handleImageChange = async (event) => {
         const selectedFile = event.target.files[0];
