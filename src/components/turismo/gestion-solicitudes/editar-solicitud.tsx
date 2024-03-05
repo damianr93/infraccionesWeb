@@ -124,83 +124,82 @@ export const EditarSolicitud = () => {
         <div className="editing">
             <h1 className="h1whiteStandar">Editar Solicitud de ingreso-egreso</h1>
             <form onSubmit={() => onSubmit()}>
-                <div>
-                    <label>Nombre empresa:</label>
-                    <input
-                        type="text"
-                        value={values.nombre_empresa}
-                        onChange={handleNombreEmpresa}
-                    />
-                </div>
-                <div>
-                    <label>Marca del vehículo:</label>
-                    <input
-                        type="text"
-                        value={values.marca_vehiculo}
-                        onChange={handleMarcaVehiculo}
-                    />
-                </div>
-                <div>
-                    <label>Dominio:</label>
-                    <input
-                        type="text"
-                        value={values.dominio_vehiculo}
-                        onChange={handleDominio}
-                    />
-                </div>
-                <div>
-                    <label>Nombre/s conductor/es:</label>
-                    <input
-                        type="text"
-                        value={values.nombre_conductores}
-                        onChange={handleNombresConductores}
-                    />
-                </div>
-                <div>
-                    <label>Fecha y hora de ingreso:</label>
-                    <input
-                        type="text"
-                        value={values.fecha_hora_ingreso}
-                        onChange={handleFechaIngreso}
-                    />
-                </div>
+                <div className="formEditInputs">
+                    <div>
+                        <label>Nombre empresa:</label>
+                        <input
+                            type="text"
+                            value={values.nombre_empresa}
+                            onChange={handleNombreEmpresa}
+                        />
+                    </div>
+                    <div>
+                        <label>Marca del vehículo:</label>
+                        <input
+                            type="text"
+                            value={values.marca_vehiculo}
+                            onChange={handleMarcaVehiculo}
+                        />
+                    </div>
+                    <div>
+                        <label>Dominio:</label>
+                        <input
+                            type="text"
+                            value={values.dominio_vehiculo}
+                            onChange={handleDominio}
+                        />
+                    </div>
+                    <div>
+                        <label>Nombre/s conductor/es:</label>
+                        <input
+                            type="text"
+                            value={values.nombre_conductores}
+                            onChange={handleNombresConductores}
+                        />
+                    </div>
+                    <div>
+                        <label>Fecha y hora de ingreso:</label>
+                        <input
+                            type="text"
+                            value={values.fecha_hora_ingreso}
+                            onChange={handleFechaIngreso}
+                        />
+                    </div>
 
-                <div>
-                    <label>Fecha y hora de egreso:</label>
-                    <input
-                        type="text"
-                        value={values.fecha_hora_egreso}
-                        onChange={handleFechaEgreso}
-                    />
-                </div>
+                    <div>
+                        <label>Fecha y hora de egreso:</label>
+                        <input
+                            type="text"
+                            value={values.fecha_hora_egreso}
+                            onChange={handleFechaEgreso}
+                        />
+                    </div>
 
-                <div>
-                    <label>Ruta ingreso:</label>
-                    <input
-                        type="text"
-                        value={values.ruta_ingreso}
-                        onChange={handleRutaIngreso}
-                    />
+                    <div>
+                        <label>Ruta ingreso:</label>
+                        <input
+                            type="text"
+                            value={values.ruta_ingreso}
+                            onChange={handleRutaIngreso}
+                        />
+                    </div>
+                    <div>
+                        <label>Ruta de egreso:</label>
+                        <input
+                            type="text"
+                            value={values.ruta_egreso}
+                            onChange={handleRutaEgreso}
+                        />
+                    </div>
+                    <div>
+                        <label>Informacion adicional:</label>
+                        <textarea
+                            className="editCreateTextArea"
+                            value={values.otra_informacion}
+                            onChange={handleInformacionAdicional}
+                        />
+                    </div>
                 </div>
-                <div>
-                    <label>Ruta de egreso:</label>
-                    <input
-                        type="text"
-                        value={values.ruta_egreso}
-                        onChange={handleRutaEgreso}
-                    />
-                </div>
-                <div>
-                    <label>Informacion adicional:</label>
-                    <textarea
-                        className="editCreateTextArea"
-                        value={values.otra_informacion}
-                        onChange={handleInformacionAdicional}
-                    />
-                </div>
-
-                <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
-                <button className="buttonEditarInfraccion" onClick={() => handleButtonVolver()}>Volver</button>
 
                 {
                     loading && (
@@ -221,7 +220,6 @@ export const EditarSolicitud = () => {
                     )
                 }
 
-
                 {mensajeExito && !mensajeError &&
                     <div className="mensajeExito">
                         <h3>{mensajeExito}</h3>
@@ -233,6 +231,11 @@ export const EditarSolicitud = () => {
                         <h3>{mensajeError}</h3>
                     </div>
                 }
+
+                <div className="buttonsEditing">
+                    <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
+                    <button className="buttonEditarInfraccion" onClick={() => handleButtonVolver()}>Volver</button>
+                </div>
 
             </form>
         </div>

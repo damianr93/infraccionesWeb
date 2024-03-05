@@ -174,6 +174,11 @@ export const EditarInfraccion = () => {
 
         const id_nomencladoresNuevos = values.id_nomenclador.map(nomenclador => nomenclador.id);
 
+        if(values.juez_asignado && typeof values.juez_asignado !== "string") {
+            values.juez_asignado = values.juez_asignado.id
+            setValues(values)
+        }
+
         try {
 
             const uploadedPhotos = await uploadImagesToS3(imagesToUpload)

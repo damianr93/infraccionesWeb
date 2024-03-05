@@ -119,82 +119,83 @@ export const CrearSolicitud = ({ addSolicitud, cratingSolicitud }) => {
     <div className="editing">
       <h1>Crear Solicitud de ingreso-egreso</h1>
       <form onSubmit={(event) => onSubmit(event)}>
-        <div>
-          <label>Nombre empresa:</label>
-          <input
-            type="text"
-            value={values.nombre_empresa}
-            onChange={handleNombreEmpresa}
-          />
-        </div>
-        <div>
-          <label>Marca del vehículo:</label>
-          <input
-            type="text"
-            value={values.marca_vehiculo}
-            onChange={handleMarcaVehiculo}
-          />
-        </div>
-        <div>
-          <label>Dominio:</label>
-          <input
-            type="text"
-            value={values.dominio_vehiculo}
-            onChange={handleDominio}
-          />
-        </div>
-        <div>
-          <label>Nombre/s conductor/es:</label>
-          <input
-            type="text"
-            value={values.nombre_conductores}
-            onChange={handleNombresConductores}
-          />
-        </div>
-        <div>
-          <label>Fecha y hora de ingreso:</label>
-          <input
-            type="datetime-local"
-            value={values.fecha_hora_ingreso}
-            onChange={handleFechaIngreso}
-          />
+        <div className="formEditInputs">
+          <div>
+            <label>Nombre empresa:</label>
+            <input
+              type="text"
+              value={values.nombre_empresa}
+              onChange={handleNombreEmpresa}
+            />
+          </div>
+          <div>
+            <label>Marca del vehículo:</label>
+            <input
+              type="text"
+              value={values.marca_vehiculo}
+              onChange={handleMarcaVehiculo}
+            />
+          </div>
+          <div>
+            <label>Dominio:</label>
+            <input
+              type="text"
+              value={values.dominio_vehiculo}
+              onChange={handleDominio}
+            />
+          </div>
+          <div>
+            <label>Nombre/s conductor/es:</label>
+            <input
+              type="text"
+              value={values.nombre_conductores}
+              onChange={handleNombresConductores}
+            />
+          </div>
+          <div>
+            <label>Fecha y hora de ingreso:</label>
+            <input
+              type="datetime-local"
+              value={values.fecha_hora_ingreso}
+              onChange={handleFechaIngreso}
+            />
+          </div>
+
+          <div>
+            <label>Fecha y hora de egreso:</label>
+            <input
+              type="datetime-local"
+              value={values.fecha_hora_egreso}
+              onChange={handleFechaEgreso}
+            />
+          </div>
+
+          <div>
+            <label>Ruta ingreso:</label>
+            <input
+              type="text"
+              value={values.ruta_ingreso}
+              onChange={handleRutaIngreso}
+            />
+          </div>
+          <div>
+            <label>Ruta de egreso:</label>
+            <input
+              type="text"
+              value={values.ruta_egreso}
+              onChange={handleRutaEgreso}
+            />
+          </div>
+          <div>
+            <label>Informacion adicional:</label>
+            <textarea
+              className="editCreateTextArea"
+              value={values.otra_informacion}
+              onChange={handleInformacionAdicional}
+            />
+          </div>
         </div>
 
-        <div>
-          <label>Fecha y hora de egreso:</label>
-          <input
-            type="datetime-local"
-            value={values.fecha_hora_egreso}
-            onChange={handleFechaEgreso}
-          />
-        </div>
-
-        <div>
-          <label>Ruta ingreso:</label>
-          <input
-            type="text"
-            value={values.ruta_ingreso}
-            onChange={handleRutaIngreso}
-          />
-        </div>
-        <div>
-          <label>Ruta de egreso:</label>
-          <input
-            type="text"
-            value={values.ruta_egreso}
-            onChange={handleRutaEgreso}
-          />
-        </div>
-        <div>
-          <label>Informacion adicional:</label>
-          <textarea
-            className="editCreateTextArea"
-            value={values.otra_informacion}
-            onChange={handleInformacionAdicional}
-          />
-        </div>
-
-        <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
 
         {
           loading && (
@@ -220,6 +221,9 @@ export const CrearSolicitud = ({ addSolicitud, cratingSolicitud }) => {
             <h3>{mensajeError}</h3>
           </div>
         }
+        <div className="buttonsEditing">
+          <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
+        </div>
 
       </form>
     </div>

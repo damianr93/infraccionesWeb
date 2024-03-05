@@ -151,153 +151,153 @@ export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
     <div className="editing">
       <h1>Crear transporte N° {values.numero_legajo}</h1>
       <form onSubmit={(event) => onSubmit(event)}>
-        <div>
-          <label>Numero de legajo:</label>
-          <input
-            type="text"
-            value={values.numero_legajo}
-            onChange={handleNumLegado}
-          />
-        </div>
-        <div>
-          <label>Dominio de vehiculo:</label>
-          <input
-            type="text"
-            value={values.dominio_vehiculo}
-            onChange={handleDominio}
-          />
-        </div>
-        <div>
-          <label>Numero de motor:</label>
-          <input
-            type="text"
-            value={values.numero_motor}
-            onChange={handleNumeroMotor}
-          />
-        </div>
-        <div>
-          <label>Número chasis:</label>
-          <input
-            type="text"
-            value={values.numero_chasis}
-            onChange={handleNumChasis}
-          />
-        </div>
-        <div>
-          <label>Marca vehículo:</label>
-          <input
-            type="text"
-            value={values.marca_vehiculo}
-            onChange={handleMarcaVehiculo}
-          />
-        </div>
-        <div>
-          <label>Modelo vehiculo:</label>
-          <input
-            type="text"
-            value={values.modelo_vehiculo}
-            onChange={handleCarModel}
-          />
-        </div>
-        <div>
-          <label>Nombre titular:</label>
-          <input
-            type="text"
-            value={values.nombre_titular}
-            onChange={handleNombleTitular}
-          />
-        </div>
-        <div>
-          <label>Numero licencia del conductor:</label>
-          <input
-            type="text"
-            value={values.numero_licencia_conductor}
-            onChange={handleNumeroLicenciaConductor}
-          />
-        </div>
+        <div className="formEditInputs">
+          <div>
+            <label>Numero de legajo:</label>
+            <input
+              type="text"
+              value={values.numero_legajo}
+              onChange={handleNumLegado}
+            />
+          </div>
+          <div>
+            <label>Dominio de vehiculo:</label>
+            <input
+              type="text"
+              value={values.dominio_vehiculo}
+              onChange={handleDominio}
+            />
+          </div>
+          <div>
+            <label>Numero de motor:</label>
+            <input
+              type="text"
+              value={values.numero_motor}
+              onChange={handleNumeroMotor}
+            />
+          </div>
+          <div>
+            <label>Número chasis:</label>
+            <input
+              type="text"
+              value={values.numero_chasis}
+              onChange={handleNumChasis}
+            />
+          </div>
+          <div>
+            <label>Marca vehículo:</label>
+            <input
+              type="text"
+              value={values.marca_vehiculo}
+              onChange={handleMarcaVehiculo}
+            />
+          </div>
+          <div>
+            <label>Modelo vehiculo:</label>
+            <input
+              type="text"
+              value={values.modelo_vehiculo}
+              onChange={handleCarModel}
+            />
+          </div>
+          <div>
+            <label>Nombre titular:</label>
+            <input
+              type="text"
+              value={values.nombre_titular}
+              onChange={handleNombleTitular}
+            />
+          </div>
+          <div>
+            <label>Numero licencia del conductor:</label>
+            <input
+              type="text"
+              value={values.numero_licencia_conductor}
+              onChange={handleNumeroLicenciaConductor}
+            />
+          </div>
 
-        <div>
-          <label>Nombre del conductor:</label>
-          <input
-            type="text"
-            value={values.nombre_conductor}
-            onChange={handleNombreConductor}
-          />
-        </div>
+          <div>
+            <label>Nombre del conductor:</label>
+            <input
+              type="text"
+              value={values.nombre_conductor}
+              onChange={handleNombreConductor}
+            />
+          </div>
 
-        <div>
-          <label>Poliza seguro:</label>
-          <input
-            type="text"
-            value={values.poliza_seguro}
-            onChange={handlePoliza}
-          />
+          <div>
+            <label>Poliza seguro:</label>
+            <input
+              type="text"
+              value={values.poliza_seguro}
+              onChange={handlePoliza}
+            />
+          </div>
+          <div>
+            <label>vtv:</label>
+            <select
+              value={values.vtv}
+              onChange={handleVtv}
+            >
+              <option>Seleccione una opción</option>
+              <option value="Vigente">Vigente</option>
+              <option value="Vencida">Vencida</option>
+            </select>
+          </div>
+          <div>
+            <label>Revision de salud:</label>
+            <select
+              value={values.revision_salud}
+              onChange={handleRevisionSalud}
+            >
+              <option>Seleccione una opción</option>
+              <option value="Vigente">Vigente</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </div>
+          <div>
+            <label>Desinfección vehicular:</label>
+            <select
+              value={values.desinfeccion_vehicular}
+              onChange={handleDesinfeccionVehicular}
+            >
+              <option>Seleccione una opción</option>
+              <option value="Regular">Regular</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </div>
+          <div>
+            <label>Taximetro:</label>
+            <select
+              value={values.taximetro}
+              onChange={handleTaximetro}
+            >
+              <option>Seleccione una opción</option>
+              <option value="En condiciones">En condiciones</option>
+              <option value="Novedades">Novedades</option>
+            </select>
+          </div>
+          <div>
+            <label>Tipo:</label>
+            <select
+              value={values.tipo}
+              onChange={handleTipoTransporte}
+            >
+              <option>Seleccione una opción</option>
+              <option value="Remis">Remis</option>
+              <option value="Taxi">Taxi</option>
+            </select>
+          </div>
+          <div>
+            <label>Observaciones:</label>
+            <input
+              type="text"
+              value={values.observaciones}
+              onChange={handleObservaciones}
+            />
+          </div>
         </div>
-        <div>
-          <label>vtv:</label>
-          <select
-            value={values.vtv}
-            onChange={handleVtv}
-          >
-            <option>Seleccione una opción</option>
-            <option value="Vigente">Vigente</option>
-            <option value="Vencida">Vencida</option>
-          </select>
-        </div>
-        <div>
-          <label>Revision de salud:</label>
-          <select
-            value={values.revision_salud}
-            onChange={handleRevisionSalud}
-          >
-            <option>Seleccione una opción</option>
-            <option value="Vigente">Vigente</option>
-            <option value="Pendiente">Pendiente</option>
-          </select>
-        </div>
-        <div>
-          <label>Desinfección vehicular:</label>
-          <select
-            value={values.desinfeccion_vehicular}
-            onChange={handleDesinfeccionVehicular}
-          >
-            <option>Seleccione una opción</option>
-            <option value="Regular">Regular</option>
-            <option value="Pendiente">Pendiente</option>
-          </select>
-        </div>
-        <div>
-          <label>Taximetro:</label>
-          <select
-            value={values.taximetro}
-            onChange={handleTaximetro}
-          >
-            <option>Seleccione una opción</option>
-            <option value="En condiciones">En condiciones</option>
-            <option value="Novedades">Novedades</option>
-          </select>
-        </div>
-        <div>
-          <label>Tipo:</label>
-          <select
-            value={values.tipo}
-            onChange={handleTipoTransporte}
-          >
-            <option>Seleccione una opción</option>
-            <option value="Remis">Remis</option>
-            <option value="Taxi">Taxi</option>
-          </select>
-        </div>
-        <div>
-          <label>Observaciones:</label>
-          <input
-            type="text"
-            value={values.observaciones}
-            onChange={handleObservaciones}
-          />
-        </div>
-
-        <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
 
         {
           loading && (
@@ -323,6 +323,10 @@ export const CrearTaxiRemis = ({ addTaxiRemis, cratingTR }) => {
             <h3>{mensajeError}</h3>
           </div>
         }
+
+        <div className="buttonsEditing">
+          <button className="buttonEditarInfraccion" type='submit'>Guardar Cambios</button>
+        </div>
 
       </form>
     </div>

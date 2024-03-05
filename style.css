@@ -57,7 +57,6 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url('./public/fondo.jpg'); */
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
     flex-direction: column;
@@ -65,7 +64,7 @@ ul {
     border-radius: 10px;
     max-width: 600px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    /* Añade sombra para resaltar el contenedor */
+
 }
 
 .login-container input {
@@ -527,6 +526,7 @@ select {
 
 .editSection {
     width: 250px;
+    margin: auto;
 }
 
 .editCreateTextArea {
@@ -645,4 +645,17 @@ select {
 .buttons button {
     margin: 0 5px;
 
+}
+
+.imgContainerTaxiRemisEdit {
+    padding: 5px;
+    overflow-y: auto;
+    max-height: 300px;
+    border: white .5px solid;
+    border-radius: 15px;
+}
+
+.imgContainerTaxiRemisEdit a {
+    display: flex;
+    flex-direction: column;
 }
