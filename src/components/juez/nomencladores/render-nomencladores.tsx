@@ -17,11 +17,11 @@ export const RenderNomenclador = ({nomencladores, onDeleteNomenclador}) => {
     return (
 
         nomencladores.map((nomenclador, index) => (
-            <div key={index} className='multas'>
+            <div key={index} className='nomencladorCard'>
 
                 <ul id={nomenclador.id} >
-                    <li>Nombre: {nomenclador.nombre}</li>
-                    <li>Unidades de valor: {nomenclador.unidades_de_valor}</li>
+                    <li><b>Nombre:</b> {nomenclador.nombre}</li>
+                    <li><b>Unidades de valor:</b> {nomenclador.unidades_de_valor}</li>
                 </ul>
                 <div className='buttonsCrud'>
                     <button onClick={() => onClickEdit(nomenclador)}>Editar</button>

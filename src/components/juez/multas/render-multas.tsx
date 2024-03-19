@@ -56,7 +56,7 @@ export const RenderMultas = ({ multas, onDeleteMulta }) => {
                                 <InfoItem><span>Foto/s:</span></InfoItem>
                                 {multa.foto.map((foto, id) => (
                                     <a key={id} href={foto} target="blank">
-                                        <img className="imgPrueba" src={foto} alt="" />
+                                        <img className="imgPreview" src={foto} alt="" />
                                     </a>
                                 ))}
                             </>

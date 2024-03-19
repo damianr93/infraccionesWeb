@@ -27,6 +27,35 @@ ul {
     list-style: none;
 }
 
+button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #3e8e41;
+}
+
+input,
+select {
+    margin-top: 5px;
+    max-width: 250px;
+    padding: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .TitleH1White {
     color: white;
 }
@@ -69,47 +98,69 @@ ul {
 
 .login-container input {
     color: #333;
-    /* Texto más oscuro */
     padding: 10px;
     width: 100%;
-    /* Ajusta el ancho al 100% del contenedor */
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.8);
-    /* Fondo más claro */
     margin-bottom: 15px;
-    /* Añade un margen inferior para separar los inputs */
 }
 
 .login-container h1 {
     color: #ffffff;
-    /* Texto negro para resaltarlo */
     font-size: 36px;
-    /* Tamaño del texto aumentado */
     font-weight: bold;
-    /* Hace que el texto sea más intenso */
     margin: 15px auto;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-    /* Texto con sombra más pronunciada */
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #000000;
-    color: white;
-    font-weight: bold;
-
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px;
+.usersContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-button:hover {
-    background-color: #45a049;
+.usersCard {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 300px;
+    background-color: #f0f0f0;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 1px black;
+    transition: 0.5s;
 }
 
-button:active {
-    background-color: #3e8e41;
+.usersCard:hover {
+    scale: 1.1;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
+}
+
+.nomencladorContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.nomencladorCard {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 300px;
+    background-color: #f0f0f0;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 1px black;
+    transition: 0.5s;
+}
+
+.nomencladorCard:hover {
+    scale: 1.1;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
 }
 
 .errorMessage {
@@ -242,16 +293,6 @@ button:active {
     margin: auto;
     width: 60px;
     padding: 1px;
-}
-
-input,
-select {
-    margin-top: 5px;
-    max-width: 250px;
-    padding: 2px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .editing label {
@@ -417,7 +458,13 @@ select {
     background-color: rgba(255, 255, 255, 0.503);
 }
 
-.imgPrueba {
+.imgPreview {
+    width: 200px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.imgEditing {
     width: 200px;
     margin: 5px;
     border-radius: 5px;
@@ -428,26 +475,24 @@ select {
 }
 
 .ciudadano {
-    background-color: #1b1e1b73;
-    width: 100%;
-    border-radius: 15px;
-    border: 0.3px rgb(0, 0, 0) solid;
-    height: 100vh;
-    scrollbar-width: thin;
-    scrollbar-color: #a0a0a0 #f0f0f0;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 1) 100%), #00af5a;
+    height: 300vh;
+    overflow-y: auto;
+}
+
+.ciudadanoOptions {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    width: 600px;
+    margin: 10px auto;
+
 }
 
 .ciudadanoH1 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
-    margin-top: 5px;
-    position: absolute;
-    top: 0;
-    margin-top: 25px;
 }
 
 .h1whiteStandar {
@@ -458,18 +503,12 @@ select {
 .ciudadanoH2 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
-    margin-top: 5px;
-    position: absolute;
-    top: 0;
-    margin-top: 70px;
     padding: 10px;
 }
 
 .ciudadanoH3 {
     color: white;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.81);
-    margin-top: 5px;
-    margin-top: 120px;
     padding: 10px;
 }
 
@@ -478,9 +517,6 @@ select {
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.503);
     width: 3500px;
-    position: absolute;
-    top: 0;
-    margin-top: 150px;
 }
 
 .ciudadanoButton {
@@ -492,24 +528,18 @@ select {
     border-radius: 5px;
     cursor: pointer;
     margin: 20px;
-    position: absolute;
     top: 0;
-    margin-top: 250px;
 }
 
 .ciudadanoRenderMultas {
     background-color: #1b1e1b73;
     margin: 15px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 15px;
     border: 0.3px rgb(0, 0, 0) solid;
-    overflow-y: scroll;
-    height: 95vh;
-    scrollbar-width: thin;
-    scrollbar-color: #a0a0a0 #f0f0f0;
-    position: absolute;
-    top: 0;
-    margin-top: 300px;
 }
 
 .loaderInScreens {
@@ -658,4 +688,168 @@ select {
 .imgContainerTaxiRemisEdit a {
     display: flex;
     flex-direction: column;
+}
+
+
+.transporteContainer {
+    display: grid;
+    width: 80%;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px auto;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.6fr 1.1fr 1.1fr 1.2fr 1fr;
+    background-color: rgba(255, 255, 255, 0.838);
+    gap: 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "transpEncabezado transpEncabezado transpEncabezado transpEncabezado"
+        "transpInfoVehiculo transpInfoVehiculo transpDatosPersonales transpDatosPersonales"
+        "transpInfoVehiculo transpInfoVehiculo transpDatosPersonales transpDatosPersonales"
+        "transpInfoVehiculo transpInfoVehiculo transpCreacionActualizacion transpCreacionActualizacion"
+        "buttonsCrud buttonsCrud buttonsCrud buttonsCrud";
+}
+
+.buttonsCrud {
+    grid-area: buttonsCrud;
+
+}
+
+.transpEncabezado {
+    grid-area: transpEncabezado;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.transpInfoVehiculo {
+    grid-area: transpInfoVehiculo;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.transpDatosPersonales {
+    grid-area: transpDatosPersonales;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.transpCreacionActualizacion {
+    grid-area: transpCreacionActualizacion;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.transpEncabezado:hover,
+.transpInfoVehiculo:hover,
+.transpDatosPersonales:hover,
+.transpCreacionActualizacion:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.taxiRemisContainer {
+    display: grid;
+    max-height: 800px;
+    width: 80%;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px auto;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1.2fr 1.4fr 1.6fr 2.6fr 1fr;
+    background-color: rgba(255, 255, 255, 0.838);
+    gap: 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "tr tr tr tr"
+        "trDatosVehiculo trDatosVehiculo trDatosPersonales trDatosPersonales"
+        "trDatosVehiculo trDatosVehiculo trDatosPersonales trDatosPersonales"
+        "trDatosVehiculo trDatosVehiculo trFechas trFechas"
+        "trFotos trFotos trFotos trFotos"
+        "buttonsCrud buttonsCrud buttonsCrud buttonsCrud";
+}
+
+.trEncabezado {
+    grid-area: tr;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.trEncabezado p {
+    font-size: large;
+    font-weight: bold;
+    color: rgb(176, 4, 4);
+}
+
+.trDatosVehiculo {
+    grid-area: trDatosVehiculo;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.trDatosPersonales {
+    grid-area: trDatosPersonales;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.trFechas {
+    grid-area: trFechas;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(245, 222, 179, 0.096);
+    transition: .5s;
+}
+
+.trFotos {
+    grid-area: trFotos;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.buttonsCrud {
+    grid-area: buttonsCrud;
+}
+
+.trEncabezado:hover,
+.trDatosVehiculo:hover,
+.trDatosPersonales:hover,
+.trFechas:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+
 }

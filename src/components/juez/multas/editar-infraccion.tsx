@@ -368,7 +368,7 @@ export const EditarInfraccion = () => {
                                             href={foto}
                                             target="blank">
                                             <img
-                                                className="imgPrueba"
+                                                className="imgEditing"
                                                 src={foto}
                                                 alt={foto} />
                                             <button

@@ -22,17 +22,22 @@ export const CiudadanoScreen = () => {
   }
 
   return (
+
     <div className="ciudadano">
-      <h1 className="ciudadanoH1">CIUDADANO</h1>
-      <h2 className="ciudadanoH2">Consultar Infracciones por N° de Patente o N° de Infraccion</h2>
-      <input
-        className="ciudadanoInput"
-        type="text"
-        placeholder="N° de Patente o Infraccion"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
-      <button className="ciudadanoButton" onClick={search}>Consultar</button>
+      <div className="ciudadanoOptions">
+        <h1 className="ciudadanoH1">CIUDADANO</h1>
+        <h2 className="ciudadanoH2">Consultar Infracciones por N° de Patente o N° de Infraccion</h2>
+        <input
+          className="ciudadanoInput"
+          type="text"
+          placeholder="N° de Patente o Infraccion"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <button className="ciudadanoButton" onClick={search}>Consultar</button>
+      </div>
+
+
       {requestSent && multas.length === 0 && <h3 className="ciudadanoH3">No se encontraron infracciones</h3>}
       {requestSent && multas.length > 0 &&
         <div className="ciudadanoRenderMultas">

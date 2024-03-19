@@ -21,7 +21,7 @@ export const VerNomencladores = () => {
 
                 const fetchedNomencladores = await getNomenclador();
 
-                if (fetchedNomencladores.length === 0) setErrorCargaDeDatos('No hay datos') 
+                if (fetchedNomencladores.length === 0) setErrorCargaDeDatos('No hay datos')
 
                 setNomencladores(fetchedNomencladores);
 
@@ -114,24 +114,24 @@ export const VerNomencladores = () => {
                     </div>
                 )
             }
+            <div className='nomencladorContainer'>
+                {isCreateNomenclador ?
+                    <CrearNomenclador
+                        addNomenclador={handleAddNomenclador}
+                        cratingNomenclador={setIsCreateNomenclador}
+                    /> : (
 
-            {isCreateNomenclador ?
-                <CrearNomenclador
-                    addNomenclador={handleAddNomenclador}
-                    cratingNomenclador={setIsCreateNomenclador}
-                /> : (
+                        isInputFocused ?
+                            <RenderNomencladorPorNombre
+                                nomenclador={nomencladorSelected}
+                                onDeleteNomenclador={handleDeleteNomenclador} /> :
+                            <RenderNomenclador
+                                nomencladores={nomencladores}
+                                onDeleteNomenclador={handleDeleteNomenclador} />
 
-                    isInputFocused ?
-                        <RenderNomencladorPorNombre
-                            nomenclador={nomencladorSelected}
-                            onDeleteNomenclador={handleDeleteNomenclador} /> :
-                        <RenderNomenclador
-                            nomencladores={nomencladores}
-                            onDeleteNomenclador={handleDeleteNomenclador} />
-
-                )
-            }
-
+                    )
+                }
+            </div>
 
         </>
     );

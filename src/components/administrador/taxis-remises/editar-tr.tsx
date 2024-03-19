@@ -321,7 +321,7 @@ export const EditarTaxiRemis = () => {
                                         href={values.foto_vehiculo}
                                         target="blank">
                                         <img
-                                            className="imgPrueba"
+                                            className="imgEditing"
                                             src={values.foto_vehiculo}
                                             alt={values.foto_vehiculo} />
                                         <button
@@ -341,7 +341,7 @@ export const EditarTaxiRemis = () => {
                                         href={values.foto_titular}
                                         target="blank">
                                         <img
-                                            className="imgPrueba"
+                                            className="imgEditing"
                                             src={values.foto_titular}
                                             alt={values.foto_titular} />
                                         <button

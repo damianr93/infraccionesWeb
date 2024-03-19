@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import { CrearTaxiRemis } from "./crear-tr";
 import { RenderTaxiRemisPorLegajo } from "./render-tr-por-numero-de-legajo";
 import { RenderTaxiRemis } from "./render-tr";
-import { BallTriangle } from "react-loader-spinner"
+import { BallTriangle } from "react-loader-spinner";
 import getTaxiRemis from "../../../api/taxi-remis";
 
 export const VerTaxiRemis = () => {
-  const [crearTaxiRemis, setCrearTaxiRemis] = useState(false)
-  const [legajoNum, setLegajoNum] = useState('')
-  const [taxiRemis, setTaxiRemis] = useState([])
-  const [isInputFocused, setIsInputFocused] = useState(false)
+  const [crearTaxiRemis, setCrearTaxiRemis] = useState(false);
+  const [legajoNum, setLegajoNum] = useState('');
+  const [taxiRemis, setTaxiRemis] = useState([]);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null)
+  const [errorCargaDeDatos, setErrorCargaDeDatos] = useState(null);
 
   useEffect(() => {
     const fetchTaxiRemis = async () => {
       try {
 
         const taxiRemisData = await getTaxiRemis();
-        if (taxiRemisData.length === 0) setErrorCargaDeDatos('No hay datos')
+        if (taxiRemisData.length === 0) setErrorCargaDeDatos('No hay datos');
         setTaxiRemis(taxiRemisData);
         setLoading(false);
 
@@ -27,38 +27,37 @@ export const VerTaxiRemis = () => {
         console.error('Error al obtener transportes:', error);
         setLoading(false);
         setErrorCargaDeDatos('Error al obtener datos');
-      }
-    }
+      };
+    };
 
-    fetchTaxiRemis()
+    fetchTaxiRemis();
   }, []);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       setIsInputFocused(true);
-    }
-  }
+    };
+  };
 
   const handleInputChange = (event) => {
     setLegajoNum(event.target.value);
-    if (event.target.value === '') setIsInputFocused(false)
-  }
+    if (event.target.value === '') setIsInputFocused(false);
+  };
 
   const onCreateTaxiRemis = () => {
-    setCrearTaxiRemis(true)
-    setErrorCargaDeDatos(null)
-  }
+    setCrearTaxiRemis(true);
+    setErrorCargaDeDatos(null);
+  };
 
   const handleAddTaxiRemis = (taxiRem) => {
-    taxiRemis.push(taxiRem)
-    setTaxiRemis(taxiRemis)
-
-  }
+    taxiRemis.push(taxiRem);
+    setTaxiRemis(taxiRemis);
+  };
 
   const onDeleteTaxiRemis = (id) => {
-    const taxiRemisNotDeleted = taxiRemis.filter(tr => id !== tr.id)
-    setTaxiRemis(taxiRemisNotDeleted)
-  }
+    const taxiRemisNotDeleted = taxiRemis.filter(tr => id !== tr.id);
+    setTaxiRemis(taxiRemisNotDeleted);
+  };
 
 
   return (
@@ -72,7 +71,7 @@ export const VerTaxiRemis = () => {
           onChange={handleInputChange}
         />
       }
-      <button onClick={() => onCreateTaxiRemis()}>Dar de alta nuevo Taxi/Remis</button>
+      <button onClick={() => onCreateTaxiRemis()}>Dar de alta nuevo Taxi/Remis</button>;
 
       {
         loading && (
@@ -86,7 +85,7 @@ export const VerTaxiRemis = () => {
               wrapperStyle={{}}
               wrapperClass=""
               visible={true}
-            />
+            />;
 
           </div>
 
@@ -118,10 +117,7 @@ export const VerTaxiRemis = () => {
               taxiRemis={taxiRemis}
               deletedTR={onDeleteTaxiRemis} />
           ))
-
-
       }
-
     </>
   )
-}
+};

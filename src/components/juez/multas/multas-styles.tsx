@@ -37,6 +37,7 @@ const DatosVehiculo =  styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
 `
 const DatosMulta = styled.div`
     grid-area: DatosMulta; 
@@ -47,6 +48,7 @@ const DatosMulta = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
 `
 
 const DatosPersonales = styled.div`
@@ -58,6 +60,7 @@ const DatosPersonales = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
 `
 const DatosUbicacion = styled.div`
     grid-area: DatosUbicacion; 
@@ -68,6 +71,7 @@ const DatosUbicacion = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5)
 `
 
 const InfoItem = styled.li`

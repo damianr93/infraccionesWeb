@@ -11,12 +11,12 @@ export const RenderUsers = ({ users, deletedUser }) => {
 
     return (
         users.map((user, index) => (
-            <div key={index} className="multas">
+            <div key={index} className="usersCard">
                 <ul id={user.id}>
-                    <li>Nombre: {user.name}</li>
-                    <li>Username: {user.username}</li>
-                    <li>Email: {user.email}</li>
-                    <li>Tipo de usuario: {user.tipo}</li>
+                    <li><b>Nombre:</b> {user.name}</li>
+                    <li><b>Username:</b> {user.username}</li>
+                    <li><b>Email:</b> {user.email}</li>
+                    <li><b>Tipo de usuario:</b> {user.tipo}</li>
                 </ul>
                 <div className='buttonsCrud'>
                     <button onClick={() => onClickDelete(user)}>Eliminar</button>

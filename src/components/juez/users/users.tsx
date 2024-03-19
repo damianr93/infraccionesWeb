@@ -76,52 +76,56 @@ export const VerUsers = () => {
                 />
             }
             <button onClick={() => onCreateUser()}>Dar de alta nuevo usuario</button>
-            {
-                loading && (
-                    <div className="loaderInScreens">
-                        <BallTriangle
-                            height={100}
-                            width={100}
-                            radius={5}
-                            color="#4fa94d"
-                            ariaLabel="ball-triangle-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
+
+            <div className="usersContainer">
+                {
+                    loading && (
+                        <div className="loaderInScreens">
+                            <BallTriangle
+                                height={100}
+                                width={100}
+                                radius={5}
+                                color="#4fa94d"
+                                ariaLabel="ball-triangle-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+
+                        </div>
+
+                    )
+                }
+
+                {
+                    errorCargaDeDatos && (
+                        <div className="mensajeError cargaDatosErro">
+                            <h3>{errorCargaDeDatos}</h3>
+                        </div>
+                    )
+                }
+
+                {
+                    crearUser ?
+                        <CrearUser
+                            addUser={handleAddUser}
+                            cratingUser={setCrearUser}
                         />
+                        :
+                        (isInputFocused ? (
+                            <RenderUserPorNombre
+                                usernam={username}
+                                users={users}
+                                deletedUser={onDeleteUser} />
+                        ) : (
+                            <RenderUsers
+                                users={users}
+                                deletedUser={onDeleteUser} />
+                        ))
 
-                    </div>
+                }
+            </div>
 
-                )
-            }
-
-            {
-                errorCargaDeDatos && (
-                    <div className="mensajeError cargaDatosErro">
-                        <h3>{errorCargaDeDatos}</h3>
-                    </div>
-                )
-            }
-
-            {
-                crearUser ?
-                    <CrearUser
-                        addUser={handleAddUser}
-                        cratingUser={setCrearUser}
-                    />
-                    :
-                    (isInputFocused ? (
-                        <RenderUserPorNombre
-                            usernam={username}
-                            users={users}
-                            deletedUser={onDeleteUser} />
-                    ) : (
-                        <RenderUsers
-                            users={users}
-                            deletedUser={onDeleteUser} />
-                    ))
-
-            }
         </>
     )
 }
